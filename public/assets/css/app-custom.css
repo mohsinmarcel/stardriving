@@ -1,0 +1,121 @@
+.panel-heading{
+    border-color: #2f323e;
+    color: white;
+    background-color: #2f323e;
+    border-radius: 0%;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 20px 25px;
+}
+
+.panel{
+    box-shadow: none;
+    border-color: #4c5667;
+}
+
+.panel-body{
+    padding: 25px;
+}
+
+.add-teacher-button{
+    background: #53e6ed;
+    border: 1px solid #53e6ed;
+}
+
+.btn{
+    border-radius: 3px;
+}
+
+.btn-primary {
+    background-color: #f14242 !important;
+    border-color: #f14242 !important;
+}
+
+.btn-link {
+    color: #f14242 !important;
+}
+
+.nav-tabs.nav-bordered li a.active {
+    border-bottom: 2px solid #f14242 !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #f14242 !important;
+    border-color: #f14242 !important;
+    background-color: #f14242 !important;
+}
+
+.clear-button {
+    color: #f14242 !important;
+}
+
+.page-item.active .page-link {
+    background-color: #f14242 !important;
+    border-color: #f14242 !important;
+}
+
+/* .uil-calender:before, .uil-home-alt:before, .side-nav-link {
+    color:black !important;
+    text-decoration: solid !important;
+} */
+
+.bi{
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+}
+
+.student-grid{
+    text-align: center;
+    align-items: center;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #f14242 !important;
+}
+
+.widget-icon{
+    color: white !important;
+    background-color: #f14242 !important;
+}
+.logo-lg, .logo-sm {
+    background-color: #f14242 !important;
+}
+.left-side-menu{
+    background: #f14242 !important;
+}
+
+.side-nav .side-nav-item:hover .side-nav-link {
+    background: #f14242 !important;
+}
+
+.side-nav .side-nav-item:hover>ul {
+    background: #f14242 !important;
+}
+
+.simplebar-content-wrapper {
+    background-color: #f14242 !important;
+}
+/* .wrapper {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid black;
+  }
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .signature-pad {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:400px;
+    height:200px;
+  } */
