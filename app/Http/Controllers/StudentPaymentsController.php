@@ -30,19 +30,19 @@ class StudentPaymentsController extends Controller
         $isSearch = false;
         $startDate = null;
         $endDate = null;
-    
+
         if (count($request->all()) > 0) {
             $isSearch = true;
-    
+
             $validator = Validator::make($request->all(), [
                 'from_date' => 'nullable|date',
                 'to_date' => 'nullable|date|after:from_date',
             ]);
-    
+
             if ($validator->fails()) {
                 return redirect()->back()->with(['isSearch' => $isSearch])->withErrors($validator)->withInput();
             }
-    
+
             if ($request->date_range == 'custom') {
                 $startDate = $request->from_date;
                 $endDate = $request->to_date;
@@ -181,7 +181,7 @@ class StudentPaymentsController extends Controller
                     'credit_card' => $request->credit_card,
                     'debit_card' => $request->debit_card,
                     'cheque_image' => $file_name,
-                    'recieved_by' => $request->recieved_by,
+                    'recieved_by' => !empty($request->recieved_other) ? 'other'-$request->recieved_other :$request->recieved_by,
                     'admin_id' => Auth::id()
                 ]);
                 if($request->payment_type == '1'){

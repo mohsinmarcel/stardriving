@@ -67,7 +67,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/database-backup', [BackupController::class, 'view'])->name('database-backup');
     Route::post('/database-backup', [BackupController::class, 'deleteFile'])->name('database-backup.delete');
     Route::get('/database-backup/daily', [BackupController::class, 'daily'])->name('database-backup.daily');
-    
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/api/upcoming-exams', [HomeController::class, 'getUpcomingExams']);
@@ -85,6 +85,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource("teachers",TeachersController::class);
     Route::resource("users",UsersController::class);
     Route::resource("rates",RatesController::class);
+    Route::post('/rates/update/process',[RatesController::class,'ratesUpdateProcess'])->name('rates.update.process');
     Route::resource("student-payments",StudentPaymentsController::class);
     Route::resource("charges-types",ChargesTypesController::class);
     Route::resource("student-notes",StudentNotesController::class);
@@ -131,8 +132,8 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/settings/template/{id}/edit', [SettingsController::class, 'edittemplate'])->name('settings.edittemplate');
     Route::put('/settings/template/{id}', [SettingsController::class, 'updatetemplate'])->name('settings.updatetemplate');
     Route::delete('/settings/template/{id}', [SettingsController::class, 'destroytemplate'])->name('settings.destroytemplate');
-    
-    
+
+
     Route::get('/ajax/studentPayments/{id}', [StudentPaymentsController::class, 'studentPayment'])->name('ajax.student.payments');
     Route::post('payment/send-receipt-email', [StudentPaymentsController::class, 'sendReceiptEmail'])->name('student-payments.send-receipt-email');
 
@@ -148,7 +149,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::post('/student-notes/{id}',[StudentNotesController::class,'studentNoteCreate'])->name('student.note');
     Route::post('/student-documents/{id}',[StudentDocumentsController::class,'studentDocumentsCreate'])->name('student.document');
-    
+
     Route::get('/student-extra-charges',[StudentExtraChargesController::class,'getExtraChargesAmount'])->name('get.extra.charges.amount');
     Route::post('/student-extra-charges/{id}',[StudentExtraChargesController::class,'studentExtraCharges'])->name('student.extra.charges');
     Route::post('/student-extra-charges-store',[StudentExtraChargesController::class,'store'])->name('student.extra.charges.store');
@@ -178,12 +179,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/reports/final-certificate/{id}',[ReportsController::class,'finalCertificate'])->name('reports.final-certificate');
     Route::get('/reports/get-student-exams/{id}',[ReportsController::class,'getStudentExams'])->name('reports.get-student-exams');
     Route::get('/reports/get-student-evaluation/{id}',[ReportsController::class,'getStudentEvaluation'])->name('reports.get-student-evaluation');
-    
+
     Route::get('student-evaluation/model-create',[StudentSessionEvaluationController::class,'createModel'])->name('student-evaluation.model-create');
     Route::post('student-evaluation/storeModel',[StudentSessionEvaluationController::class,'storeModel'])->name('student-evaluation.model-store');
     Route::get('student-evaluation/model-edit/{id}',[StudentSessionEvaluationController::class,'editModel'])->name('student-evaluation.model-edit');
     Route::post('student-evaluation/model-update',[StudentSessionEvaluationController::class,'updateModel'])->name('student-evaluation.model-update');
-    
+
     Route::get('sms-mailing/mail/{id}',[SmsAndMailingController::class,'mail'])->name('sms-mailing.mail');
     Route::post('sms-mailing/mail',[SmsAndMailingController::class,'mailPost'])->name('sms-mailing.mail.post');
     Route::get('sms-mailing/sms/{id}',[SmsAndMailingController::class,'sms'])->name('sms-mailing.sms');
@@ -191,7 +192,7 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('import-export/import',[ImportExportStudentsController::class,'import'])->name('import-export.import');
     Route::post('import-export/import',[ImportExportStudentsController::class,'importPost'])->name('import-export.importpost');
-    
+
     Route::get('import-export/export',[ImportExportStudentsController::class,'exportStudents'])->name('import-export.export');
 
     Route::get('fullcalender', [FullCalenderController::class, 'index']);

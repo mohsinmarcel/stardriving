@@ -40,7 +40,7 @@
                                 <td>{{$item->hourly_rate}}</td>
                                 <td>
                                     @can('rates-edit')
-                                        <a href="{{route('rates.edit',$item->id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
+                                        <a href="{{route('rates.edit',$item->year)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-file-edit-alt"></i>
                                         </a>
                                     @endcan

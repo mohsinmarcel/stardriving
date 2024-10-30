@@ -96,7 +96,8 @@ class RatesController extends Controller
         {
             return abort(401);
         }
-        $rates = Rate::findOrFail($id);
+        // $rates = Rate::findOrFail($id);
+        $rates = Rate::where('year',$id)->get();
         return view('rates.edit',\compact('rates'));
     }
 
@@ -107,8 +108,9 @@ class RatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'module' => 'required',
             'no_of_hours' => 'required',
@@ -132,5 +134,43 @@ class RatesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ratesUpdateProcess(Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'class_type_id.*' => 'required',
+            'module.*' => 'required',
+            'no_of_hours.*' => 'required',
+            'hourly_rate.*' => 'required',
+            'year' => 'required',
+        ]);
+
+        $oldClassType = ClassType::where('name', 'LIKE', '%' . $request->old_year . '%')->get();
+        if(!empty($oldClassType))
+        {
+            foreach($oldClassType as $classType) {
+                Rate::where('class_type_id', $classType->id)->delete();
+                $classType->delete();
+            }
+        }
+        foreach($request->class_type_id as $key => $value) {
+            $trimmedValue = preg_replace('/-\d+\sPrice$/', '', $value);
+            $classType = ClassType::create([
+                'name' => $trimmedValue . '-' . $request->year,
+                'active' => '1',
+            ]);
+
+            Rate::create([
+                'class_type_id' => $classType->id,  // Use the ID of the created ClassType
+                'module' => $request->module[$key],
+                'no_of_hours' => $request->no_of_hours[$key],
+                'hourly_rate' => $request->hourly_rate[$key],
+                'is_active' => 1,
+                'year' => $request->year,
+            ]);
+        }
+        return redirect()->route('rates.index')->with('success', 'Rates Updated successfully');
     }
 }

@@ -4,7 +4,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  
+
   <div class="modal-body">
     <div class="alert bg-danger text-light pb-0" id="payNowModelError" style="display: none">
     </div>
@@ -90,7 +90,16 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="recieved_by" class="control-label" >Recieved By:</label>
-                <input type="text" id="recieved_by"  class="form-control" name="recieved_by" value="{{$stduent_course_detail->recieved_by}}" data-remaining="{{$stduent_course_detail->remaining_amount}}">
+                <select class="form-control form-select" onchange="recievedFunction(this)" name="recieved_by">
+                    <option value="Arham">Arham</option>
+                    <option value="Maaz">Maaz</option>
+                    <option value="Sohail">Sohail</option>
+                    <option value="POS">POS</option>
+                    <option value="Other">Other</option>
+
+                </select>
+                <br>
+                <input type="text" id="recieve_other"  class="form-control d-none" name="recieve_other">
             </div>
         </div>
         <div class="col-md-12">
@@ -118,3 +127,19 @@
     <button id="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary" id="addPaymentBtn" {{$stduent_course_detail->remaining_amount <= 0?'disabled':''}} form="payNowForm">Add Payment</button>
 </div>
+
+<script>
+    function recievedFunction(input)
+    {
+        let value = $(input).val();
+        $('#recieve_other').val('');
+        if(value == 'Other')
+        {
+            $('#recieve_other').removeClass('d-none');
+        }
+        else
+        {
+            $('#recieve_other').addClass('d-none');
+        }
+    }
+</script>

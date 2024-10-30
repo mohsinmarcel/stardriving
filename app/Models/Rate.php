@@ -17,6 +17,13 @@ class Rate extends Model
         return $this->belongsTo(ClassType::class, 'class_type_id', 'id');
     }
 
+    public function getClassNameAttribute()
+    {
+        // return $this->belongsTo(ClassType::class, 'class_type_id', 'id');
+        $name = ClassType::where('id',$this->class_type_id)->pluck('name')->first();
+        return $name;
+    }
+
     protected static function booted()
     {
         static::updated(function ($rate) {
