@@ -85,6 +85,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::resource("teachers",TeachersController::class);
     Route::resource("users",UsersController::class);
     Route::resource("rates",RatesController::class);
+    Route::get('/rates/edits/{year}',[RatesController::class,'ratesEdits'])->name('rates.edits');
     Route::post('/rates/update/process',[RatesController::class,'ratesUpdateProcess'])->name('rates.update.process');
     Route::resource("student-payments",StudentPaymentsController::class);
     Route::resource("charges-types",ChargesTypesController::class);

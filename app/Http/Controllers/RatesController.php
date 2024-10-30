@@ -92,13 +92,13 @@ class RatesController extends Controller
      */
     public function edit($id)
     {
-        if(!Auth::user()->hasPermissionTo('rates-edit'))
-        {
-            return abort(401);
-        }
-        // $rates = Rate::findOrFail($id);
-        $rates = Rate::where('year',$id)->get();
-        return view('rates.edit',\compact('rates'));
+        // if(!Auth::user()->hasPermissionTo('rates-edit'))
+        // {
+        //     return abort(401);
+        // }
+        // // $rates = Rate::findOrFail($id);
+        // $rates = Rate::where('year',$id)->get();
+        // return view('rates.edit',\compact('rates'));
     }
 
     /**
@@ -134,6 +134,17 @@ class RatesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ratesEdits($year)
+    {
+        if(!Auth::user()->hasPermissionTo('rates-edit'))
+        {
+            return abort(401);
+        }
+        // $rates = Rate::findOrFail($id);
+        $rates = Rate::where('year',$year)->get();
+        return view('rates.edit',\compact('rates'));
     }
 
     public function ratesUpdateProcess(Request $request)
