@@ -51,6 +51,7 @@ class AuthController extends Controller
     public function forgetPasswordPost(Request $request)
     {
         // 
+        // dd($request->all());
         $admin = Admin::where('email',$request->email)->first();
         // if ($request->email=="info@stardrivingschool.ca") {
         if($admin){
@@ -61,7 +62,7 @@ class AuthController extends Controller
                 'token' => $admin->remember_token
             ];
         
-            \Mail::to($request->email)->send(new \App\Mail\MyTestMail($details));
+            Mail::to($request->email)->send(new \App\Mail\MyTestMail($details));
             Session::flash('Success', 'Email has been sent to you, please verify it'); 
         }else{
             Session::flash('Error', 'There is no data with this Email.'); 

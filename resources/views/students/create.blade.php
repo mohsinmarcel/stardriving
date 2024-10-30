@@ -336,7 +336,7 @@
                         <div class="row">
                             <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
-                                        <label for="knowledge_test_date" class="control-label">Knowledge Test
+                                        <label for="knowledge_test_date" class="control-label">Theoretical Test
                                         Date:</label>
                                         <input type="date" id="knowledge_test_date" onchange="getdate(this,document.getElementById('knowledge_test_date'))"
                                             class="form-control @error('knowledge_test_date') is-invalid @enderror"

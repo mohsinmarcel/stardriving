@@ -33,6 +33,20 @@
    .hidden {
    display: none !important;
    }
+
+   .centered-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+    width: 100%; /* Full width */
+   }
+   #calendar {
+      width: 65%; /* Adjust this percentage as needed */
+      transform: scale(1); /* Scale the calendar size */
+      transform-origin: center;
+      overflow: hidden;
+      font-size: 13px;
+   }
 </style>
 <!-- start page title -->
 <div class="row">
@@ -48,7 +62,9 @@
       <div class="col-md-8">
          <div class="card widget-flat">
             <div class="card-body">
+               <div class="centered-container">
                <div id='calendar'>
+               </div>
                </div>
             </div>
             <!-- end card-body-->

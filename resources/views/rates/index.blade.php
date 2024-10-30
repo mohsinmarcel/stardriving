@@ -16,6 +16,9 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-4">List of Prices</h4>
+                <a href="{{route('rates.create')}}" class="btn btn-primary p-1" style="font-size: 1.5rem">
+                    <button class="btn btn-primary" style="float: right">Create Price</button>
+                </a>
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr>

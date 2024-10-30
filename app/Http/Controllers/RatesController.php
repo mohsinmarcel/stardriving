@@ -15,12 +15,12 @@ class RatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         if(!Auth::user()->hasPermissionTo('rates-view'))
         {
             return abort(401);
         }
-        $rates = Rate::all();
+        $rates = Rate::groupBy('year')->whereNotNull('year')->get();
         return view('rates.index',\compact('rates'));
     }
 
@@ -44,8 +44,34 @@ class RatesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
+        $request->validate([
+            'class_type_id.*' => 'required',
+            'module.*' => 'required',
+            'no_of_hours.*' => 'required',
+            'hourly_rate.*' => 'required',
+            'year' => 'required',
+        ]);
+
+        foreach($request->class_type_id as $key => $value)
+        {
+            $classType = ClassType::create([
+                'name' => $value . '-' . $request->year,
+                'active' => '1',
+            ]);
+
+            Rate::create([
+                'class_type_id' => $classType->id,  // Use the ID of the created ClassType
+                'module' => $request->module[$key],
+                'no_of_hours' => $request->no_of_hours[$key],
+                'hourly_rate' => $request->hourly_rate[$key],
+                'is_active' => 1,
+                'year' => $request->year,
+            ]);
+        }
+        return redirect()->route('rates.index')->with('success', 'Rates Created successfully');
     }
+
 
     /**
      * Display the specified resource.

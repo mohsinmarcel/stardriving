@@ -24,8 +24,8 @@
         <th>Theoretical Class Hours</th>
         <th>Practical Class Hours</th>
         <th>Total Hours</th>
-        <th>Practical Credit Hours Rates</th>
         <th>Theoretical Credit Hours Rates</th>
+        <th>Practical Credit Hours Rates</th>
         <th>Sub Total</th>
         <th>GST Tax</th>
         <th>QST Tax</th>
@@ -61,8 +61,8 @@
             <td>{{ @$student->license_expiry_date }}</td>
             <td>{{ @$student->student_type }}</td>
             <td>{{ @$student->student_condition }}</td>
-            <td>{{ @$student->theoretical_credit_hours }}</td>
             <td>{{ @$student->practical_credit_hours }}</td>
+            <td>{{ @$student->theoretical_credit_hours }}</td>
             <td>{{ @$student->total_hours }}</td>
             <td>{{ @$student->practical_credit_hours_rates }}</td>
             <td>{{ @$student->theoretical_credit_hours_rates }}</td>

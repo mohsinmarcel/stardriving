@@ -87,6 +87,12 @@
                 <input type="text" id="remaining_amount" readonly class="form-control" name="remaining_amount" value="{{$stduent_course_detail->remaining_amount}}" data-remaining="{{$stduent_course_detail->remaining_amount}}">
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="recieved_by" class="control-label" >Recieved By:</label>
+                <input type="text" id="recieved_by"  class="form-control" name="recieved_by" value="{{$stduent_course_detail->recieved_by}}" data-remaining="{{$stduent_course_detail->remaining_amount}}">
+            </div>
+        </div>
         <div class="col-md-12">
             <div class="form-group clearfix">
                 <div class="icheck-success d-inline">

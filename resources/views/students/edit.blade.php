@@ -350,6 +350,50 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                        <label for="knowledge_test_date" class="control-label">Theoretical Test
+                                        Date:</label>
+                                        <input type="date" id="knowledge_test_date" onchange="getdate(this,document.getElementById('knowledge_test_date'))"
+                                            class="form-control @error('knowledge_test_date') is-invalid @enderror"
+                                            name="knowledge_test_date" value="{{ old('knowledge_test_date',$students->knowledge_test_date) }}">
+                                    @error('knowledge_test_date')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                        <label for="knowledge_test_time" class="control-label">Time:</label>
+                                        <input type="time"  id="knowledge_test_time" 
+                                            class="form-control @error('knowledge_test_time') is-invalid @enderror"
+                                            name="knowledge_test_time" value="{{ old('knowledge_test_time',$students->knowledge_test_time) }}">
+                                    @error('knowledge_test_time')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <div class="form-group">
+                                    <label for="knowledge_test_location" class="control-label">Location:</label>
+                                    <select class="form-control @error('knowledge_test_location') is-invalid @enderror"
+                                            name="knowledge_test_location" id="knowledge_test_location">
+                                        <option value="">--select--</option>
+                                        @foreach($locations as $location)
+                                            <option value="{{ $location->name }}" {{ old('knowledge_test_location',$students->knowledge_test_location) == $location->name ? 'selected' : '' }}>
+                                                {{ $location->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('knowledge_test_location')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="row">
                                     <div class="col-md-4 col-lg-3">
                                         <div class="form-group">
@@ -391,49 +435,6 @@
                                     @enderror
                                 </div>
                             </div>         
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-lg-3">
-                                <div class="form-group">
-                                        <label for="knowledge_test_date" class="control-label">Knowledge Test
-                                        Date:</label>
-                                        <input type="date" id="knowledge_test_date" onchange="getdate(this,document.getElementById('knowledge_test_date'))"
-                                            class="form-control @error('knowledge_test_date') is-invalid @enderror"
-                                            name="knowledge_test_date" value="{{ old('knowledge_test_date',$students->knowledge_test_date) }}">
-                                    @error('knowledge_test_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="form-group">
-                                        <label for="knowledge_test_time" class="control-label">Time:</label>
-                                        <input type="time"  id="knowledge_test_time" 
-                                            class="form-control @error('knowledge_test_time') is-invalid @enderror"
-                                            name="knowledge_test_time" value="{{ old('knowledge_test_time',$students->knowledge_test_time) }}">
-                                    @error('knowledge_test_time')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-lg-3">
-                                <div class="form-group">
-                                    <label for="knowledge_test_location" class="control-label">Location:</label>
-                                    <select class="form-control @error('knowledge_test_location') is-invalid @enderror"
-                                            name="knowledge_test_location" id="knowledge_test_location">
-                                        <option value="">--select--</option>
-                                        @foreach($locations as $location)
-                                            <option value="{{ $location->name }}" {{ old('knowledge_test_location',$students->knowledge_test_location) == $location->name ? 'selected' : '' }}>
-                                                {{ $location->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('knowledge_test_location')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>

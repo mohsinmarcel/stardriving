@@ -10,7 +10,7 @@ class Rate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['class_type_id','module','no_of_hours','hourly_rate','is_active'];
+    protected $fillable = ['class_type_id','module','no_of_hours','hourly_rate','is_active','year'];
 
     public function classType()
     {

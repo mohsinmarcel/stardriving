@@ -144,6 +144,7 @@ class StudentPaymentsController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $stduent_course_detail = StudentCourseDetail::where('student_id',base64_decode($request->student_id))->firstOrFail();
         $extra_charges_remaining_amount = DB::table('student_payments')->select(DB::raw("((select ifnull(sum(student_extra_charges.amount),0) from student_extra_charges where student_id = ".base64_decode($request->student_id).")-ifnull(sum(student_payments.amount),0) ) as remaining_amount"))->where("payment_type_id",2)->where("student_id",base64_decode($request->student_id))->first()->remaining_amount;
         $max_amount = $request->payment_type == '2'?$extra_charges_remaining_amount:$stduent_course_detail->remaining_amount;
@@ -157,6 +158,7 @@ class StudentPaymentsController extends Controller
             'card_type' => 'nullable|required_if:payment_method,==,credit_card|string',
             'credit_card' => 'nullable|required_if:payment_method,==,credit_card|integer|digits_between:4,4',
             'debit_card' => 'nullable|required_if:payment_method,==,debit_card|integer|digits_between:4,4',
+            'recieved_by' => 'required',
         ]);
         if ($validator->passes()) {
             $file_name = null;
@@ -179,6 +181,7 @@ class StudentPaymentsController extends Controller
                     'credit_card' => $request->credit_card,
                     'debit_card' => $request->debit_card,
                     'cheque_image' => $file_name,
+                    'recieved_by' => $request->recieved_by,
                     'admin_id' => Auth::id()
                 ]);
                 if($request->payment_type == '1'){
@@ -258,6 +261,7 @@ class StudentPaymentsController extends Controller
             'payment_date' => 'required|date|before:tomorrow',
             'payment_type' => 'required',
             'amount' => 'numeric|min:0.01',
+            'recieved_by' => 'required',
             'cheque_image' => 'nullable|required_if:payment_method,==,cheque|mimes:jpeg,jpg,png,pdf|max:2048',
             'card_type' => 'nullable|required_if:payment_method,==,credit_card|string',
             'credit_card' => 'nullable|required_if:payment_method,==,credit_card|integer|digits_between:4,4',
@@ -292,6 +296,7 @@ class StudentPaymentsController extends Controller
                     'credit_card' => $request->credit_card,
                     'debit_card' => $request->debit_card,
                     'cheque_image' => $file_name,
+                    'recieved_by' => $request->recieved_by,
                     'admin_id' => Auth::id()
                 ]);
                 if($request->payment_type == '1'){

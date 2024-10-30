@@ -16,7 +16,8 @@ class StudentAttendance extends Model
         'end_time',
         'attendance_date',
         'mark_by',
-        'event_id'
+        'event_id',
+        'attendance_category',
     ];
     public function class_type()
     {
