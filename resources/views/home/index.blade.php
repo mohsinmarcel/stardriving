@@ -17,18 +17,18 @@
    left: 50%;
    transform: translate(-50%, -50%);
    font-size: 18px;
-   color: #ff0000; 
+   color: #ff0000;
    }
    .fc-day.past-day {
    pointer-events: none;
-   background-color: #f0f0f0; 
+   background-color: #f0f0f0;
    }
    .blockout-day{
    background-color:#bdbbbb;
    pointer-events: none;
    }
    .row.mb-4 {
-   justify-content: center; 
+   justify-content: center;
    }
    .hidden {
    display: none !important;
@@ -127,6 +127,140 @@
                   </div>
                   <!-- end card-->
                </div>
+                 <!-- TODAY'S DRIVING HOURS -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-clock-outline widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">{{$getTodayDrivingHours}}</h3>
+                      <h5 class="mt-0" title="TODAY'S PAID AMOUNT">TODAY'S DRIVING HOURS </h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+<!-- TODAY'S PAID AMOUNT -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-currency-usd widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">$ {{$getTodayPaidAmount}}</h3>
+                      <h5 class=" mt-0" title="TODAY'S PAID AMOUNT">TODAY'S PAID AMOUNT</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+             <!-- REMAINING STUDENTS -->
+             <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-account-multiple widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">{{$remaining_students}}</h3>
+                      <h5 class="mt-0" title="REMAINING STUDENTS">REMAINING STUDENTS</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+               <!-- REMAINING DRIVING HOURS -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-clock-outline widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">{{$getRemainingDrivingHours}}</h3>
+                      <h5 class=" mt-0" title="TODAY'S PAID AMOUNT">REMAINING DRIVING HOURS</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+               <!-- TOTAL REMAINING AMOUNT -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-currency-usd widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3" >$ {{$getTotalRemainingAmount}}</h3>
+                      <h5 class="mt-0" title="TOTAL REMAINING AMOUNT">TOTAL REMAINING AMOUNT</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+              <!-- Completed Driving Hours -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-account-multiple widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3" >{{$extrastudents}}</h3>
+                      <h5 class="mt-0" title="EXTRA STUDENTS">EXTRA STUDENTS</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+              <!-- Extra Student AMOUNT -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-clock-outline widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3" >{{$getCompletedDrivingHours}}</h3>
+                      <h5 class="mt-0" title="COMPLETED DRIVING HOURS">COMPLETED DRIVING HOURS</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+              <!-- TOTAL PAID AMOUNT -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-currency-usd widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">$ {{$getTotalPaidAmount}}</h3>
+                      <h5 class=" mt-0" title="TOTAL PAID AMOUNT">TOTAL PAID AMOUNT</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
+               <!-- TOTAL STUDENTS -->
+               <!-- end col-->
+               <div class="col-lg-4">
+                <div class="card widget-flat">
+                   <div class="card-body">
+                      <div class="float-right">
+                         <i class="mdi mdi-account-multiple widget-icon"></i>
+                      </div>
+                      <h3 class="text-muted font-weight-normal mb-3">{{$students}}</h3>
+                      <h5 class="mt-0" title="TOTAL COURSE STUDENTS">TOTAL COURSE STUDENTS</h5>
+                   </div>
+                   <!-- end card-body-->
+                </div>
+                <!-- end card-->
+             </div>
                 <!-- TOTAL DRIVING HOURS -->
                <!-- end col-->
                <div class="col-lg-4">
@@ -142,144 +276,6 @@
                   </div>
                   <!-- end card-->
                </div>
-                <!-- TOTAL PAID AMOUNT -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-currency-usd widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">$ {{$getTotalPaidAmount}}</h3>
-                        <h5 class=" mt-0" title="TOTAL PAID AMOUNT">TOTAL PAID AMOUNT</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-               <!-- REMAINING STUDENTS -->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-account-multiple widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">{{$remaining_students}}</h3>
-                        <h5 class="mt-0" title="REMAINING STUDENTS">REMAINING STUDENTS</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-                  <!-- REMAINING DRIVING HOURS -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-clock-outline widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">{{$getRemainingDrivingHours}}</h3>
-                        <h5 class=" mt-0" title="TODAY'S PAID AMOUNT">REMAINING DRIVING HOURS</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-                <!-- TOTAL REMAINING AMOUNT -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-currency-usd widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3" >$ {{$getTotalRemainingAmount}}</h3>
-                        <h5 class="mt-0" title="TOTAL REMAINING AMOUNT">TOTAL REMAINING AMOUNT</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-                <!-- Completed Driving Hours -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-account-multiple widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3" >{{$extrastudents}}</h3>
-                        <h5 class="mt-0" title="EXTRA STUDENTS">EXTRA STUDENTS</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-                  <!-- Extra Student AMOUNT -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-clock-outline widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3" >{{$getCompletedDrivingHours}}</h3>
-                        <h5 class="mt-0" title="COMPLETED DRIVING HOURS">COMPLETED DRIVING HOURS</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-                 <!-- TODAY'S PAID AMOUNT -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-currency-usd widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">$ {{$getTodayPaidAmount}}</h3>
-                        <h5 class=" mt-0" title="TODAY'S PAID AMOUNT">TODAY'S PAID AMOUNT</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-               <!-- TOTAL STUDENTS -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-account-multiple widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">{{$students}}</h3>
-                        <h5 class="mt-0" title="TOTAL COURSE STUDENTS">TOTAL COURSE STUDENTS</h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-               <!-- TODAY'S DRIVING HOURS -->
-               <!-- end col-->
-               <div class="col-lg-4">
-                  <div class="card widget-flat">
-                     <div class="card-body">
-                        <div class="float-right">
-                           <i class="mdi mdi-clock-outline widget-icon"></i>
-                        </div>
-                        <h3 class="text-muted font-weight-normal mb-3">{{$getTodayDrivingHours}}</h3>
-                        <h5 class="mt-0" title="TODAY'S PAID AMOUNT">TODAY'S DRIVING HOURS </h5>
-                     </div>
-                     <!-- end card-body-->
-                  </div>
-                  <!-- end card-->
-               </div>
-            
-             
-             
-              
                <!-- TOTAL AMOUNT -->
                <!-- end col-->
                <div class="col-lg-4">
@@ -403,7 +399,7 @@
    </div>
    <!-- end col -->
 </div>
-<!-- end row -->  
+<!-- end row -->
 @include('partials.delete-alert-modal')
 @include('partials._modal')
 @endsection
@@ -419,7 +415,7 @@
    var jsonData = JSON.parse(@json($last_week_students))
    var studentData = JSON.parse(@json($studentTypeCount))
    var paymentData = JSON.parse(@json($getTwelveMonthPaymentHistory))
-   var studentStatuses = JSON.parse(@json($student_status_count)) 
+   var studentStatuses = JSON.parse(@json($student_status_count))
    var SITEURL = "{{ url('/') }}";
    var options = {
              series: [{
@@ -454,10 +450,10 @@
              categories: jsonData.map(x=>x.days),
            }
        };
-   
+
            var chart = new ApexCharts(document.querySelector("#line-chart"), options);
            chart.render();
-   
+
            var studentOptions = {
              colors: ["#FA5C7C",'#FF8B8B'],
              // title: {
@@ -490,7 +486,7 @@
        };
            var studentChart = new ApexCharts(document.querySelector("#student-chart"), studentOptions);
            studentChart.render();
-   
+
            new Chart("student-chart", {
      type: "pie",
      data: {
@@ -506,12 +502,12 @@
        }
      }
    });
-   
+
            var optionsPayment = {
              series: [{
              name: 'Paid Amount',
              data: paymentData.map(x=>x.amount)
-           } 
+           }
            // ,{
            //   name: 'series2',
            //   data: [11, 32, 45, 32, 34, 52, 41]
@@ -543,10 +539,10 @@
              categories: paymentData.map(x=>x.month_year)
            }
            };
-   
+
            var chartPayment = new ApexCharts(document.querySelector("#payment-chart"), optionsPayment);
            chartPayment.render();
-           
+
            // Student Statuses Chart start
            var studentOptions = {
              colors: ["#f14242","#FA5C7C",'#FF8B8B','#FFDEDE'],
@@ -575,7 +571,7 @@
        };
          var studentChart = new ApexCharts(document.querySelector("#student-status"), studentOptions);
          studentChart.render();
-   
+
          new Chart("student-status", {
      type: "pie",
      data: {
@@ -598,9 +594,9 @@
                            if (date.isBefore(moment(), 'day')) {
                                cell.addClass('past-day');
                            }
-   
+
                            var currentDate = date.format('YYYY-MM-DD');
-                           
+
                          },
                          header: {
                            left: 'prev,next',
@@ -611,17 +607,17 @@
                            if (date.isAfter(moment(), 'day')) {
                                // Open the modal
                                $('#frontPagesModal').modal('show');
-   
+
                                // Set the value of the attendance_date input field
-                              
-   
+
+
                                // Load additional form data if needed
                                $.get("/student-attendance/create", function (data) {
                                    $('#frontPagesModal .modal-dialog').addClass('modal-lg');
                                    $('#frontPagesModal .modal-content').html(data);
                                    $('#student, #teacher,#class_type,#class_module').select2();
                                    $('#attendance_date').val(date.format('YYYY-MM-DD'));
-   
+
                                    $('#frontPagesModal .modal-content').on('change','#class_type',function(){
                                              getModules($(this).val())
                                          })
@@ -629,7 +625,7 @@
                            }
                        }
                    });
-    
+
                    function getModules(classType){
            let modules = @json($class_modules);
            $('#class_module').empty();
@@ -640,23 +636,23 @@
                    $('#class_module').append("<option value='"+item.id+"' "+isSelected+">"+item.name+"</option>")
                }
            }
-           
+
        $(document).on('change','#class_type',function(){
            getModules($(this).val())
        })
            // $('#class_module').
            // console.log(modules);
        }
-   
-   
+
+
        function changeTheoryExamRecords(records) {
        fetchUpcomingExams('theroy', records);
    }
-   
+
    function changeKnowledgeTestRecords(records) {
        fetchUpcomingExams('knowledge', records);
    }
-   
+
    function fetchUpcomingExams(type, records) {
        fetch(`/api/upcoming-exams?type=${type}&records=${records}`)
            .then(response => response.json())
@@ -664,16 +660,16 @@
                const listId = type === 'theroy' ? 'upcomingTheoryExamsList' : 'upcomingKnowledgeTestsList';
                const list = document.getElementById(listId);
                list.innerHTML = '';
-   
+
                data.forEach(exam => {
                  console.log(exam)
                    const listItem = document.createElement('li');
                    listItem.className = 'list-group-item';
-   
+
                    const examDate = type === 'knowledge' ? exam.knowledge_test_date : exam.theroy_exam_date;
                    const examTime = type === 'knowledge' ? ` ${formatTime(exam.knowledge_test_time)}` : '';
-   
-   
+
+
                    listItem.textContent =  type === 'knowledge' ?`${exam.first_name} ${exam.last_name} - ${examDate} ${examTime}` : `${exam.first_name} ${exam.last_name} - ${examDate}`;
                    list.appendChild(listItem);
                });
@@ -684,6 +680,6 @@
        const formattedTime = new Date(`1970-01-01T${time}Z`).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
        return formattedTime;
    }
-   
+
 </script>
 @endpush
