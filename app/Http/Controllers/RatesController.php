@@ -20,8 +20,9 @@ class RatesController extends Controller
         {
             return abort(401);
         }
-        $rates = Rate::groupBy('year')->whereNotNull('year')->get();
+        $rates = Rate::groupBy('class_type_id')->whereNotNull('year')->get();
         return view('rates.index',\compact('rates'));
+
     }
 
     /**
@@ -53,20 +54,21 @@ class RatesController extends Controller
             'year' => 'required',
         ]);
 
+        $classType = ClassType::create([
+            'name' => $request->year,
+            'active' => '1',
+        ]);
+
         foreach($request->class_type_id as $key => $value)
         {
-            $classType = ClassType::create([
-                'name' => $value . '-' . $request->year,
-                'active' => '1',
-            ]);
 
             Rate::create([
-                'class_type_id' => $classType->id,  // Use the ID of the created ClassType
+                'class_type_id' => $classType->id,
                 'module' => $request->module[$key],
                 'no_of_hours' => $request->no_of_hours[$key],
                 'hourly_rate' => $request->hourly_rate[$key],
                 'is_active' => 1,
-                'year' => $request->year,
+                'year' => $value .'-'.$request->year,
             ]);
         }
         return redirect()->route('rates.index')->with('success', 'Rates Created successfully');
@@ -143,7 +145,7 @@ class RatesController extends Controller
             return abort(401);
         }
         // $rates = Rate::findOrFail($id);
-        $rates = Rate::where('year',$year)->get();
+        $rates = Rate::where('class_type_id',$year)->get();
         return view('rates.edit',\compact('rates'));
     }
 
@@ -166,20 +168,21 @@ class RatesController extends Controller
                 $classType->delete();
             }
         }
-        foreach($request->class_type_id as $key => $value) {
-            $trimmedValue = preg_replace('/-\d+\sPrice$/', '', $value);
-            $classType = ClassType::create([
-                'name' => $trimmedValue . '-' . $request->year,
-                'active' => '1',
-            ]);
+        $classType = ClassType::create([
+            'name' => $request->year,
+            'active' => '1',
+        ]);
+
+        foreach($request->class_type_id as $key => $value)
+        {
 
             Rate::create([
-                'class_type_id' => $classType->id,  // Use the ID of the created ClassType
+                'class_type_id' => $classType->id,
                 'module' => $request->module[$key],
                 'no_of_hours' => $request->no_of_hours[$key],
                 'hourly_rate' => $request->hourly_rate[$key],
                 'is_active' => 1,
-                'year' => $request->year,
+                'year' => $value .'-'.$request->year,
             ]);
         }
         return redirect()->route('rates.index')->with('success', 'Rates Updated successfully');

@@ -27,8 +27,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="year" class="control-label" >Price Name:</label>
-                                <input type="text" id="year" class="form-control @error('year') is-invalid @enderror" name="year" value="{{$rates[0]->year}}">
-                                <input type="hidden" class="form-control" name="old_year" value="{{$rates[0]->year}}">
+                                <input type="text" id="year" class="form-control @error('year') is-invalid @enderror" name="year" value="{{$rates[0]->class_name}}">
+                                <input type="hidden" class="form-control" name="old_year" value="{{$rates[0]->class_name}}">
                                 @error('year')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -43,7 +43,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="class_type_id" class="control-label" >Class Name:</label>
-                                            <input type="text" id="class_type_id" class="form-control" name="class_type_id[]" value="{{old('class_type_id',$rate->class_name)}}" readonly>
+                                            <input type="text" id="class_type_id" class="form-control" name="class_type_id[]" value="{{ $value == 0 ? 'Theoretical' : 'Practical' }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-3">

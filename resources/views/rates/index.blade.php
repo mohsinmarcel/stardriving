@@ -16,8 +16,8 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title mb-4">List of Prices</h4>
-                <a href="{{route('rates.create')}}" class="btn btn-primary p-1" style="font-size: 1.5rem">
-                    <button class="btn btn-primary" style="float: right">Create Price</button>
+                <a href="{{route('rates.create')}}" class="btn btn-primary p-2">
+                   Create Price
                 </a>
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
@@ -31,7 +31,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- @dd($rates->prices) --}}
                         @foreach ($rates as $key => $item)
+                            {{-- @dd($item->hourly_rate) --}}
                             @if(!empty($item->year))
                             <tr>
                                 <td>{{$key+1}}</td>
@@ -41,7 +43,7 @@
                                 <td>{{$item->hourly_rate}}</td>
                                 <td>
                                     @can('rates-edit')
-                                        <a href="{{route('rates.edits',$item->year)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
+                                        <a href="{{route('rates.edits',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-file-edit-alt"></i>
                                         </a>
                                     @endcan

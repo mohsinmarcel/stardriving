@@ -86,7 +86,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="module" class="control-label" >Class Module:</label>
-                                        <input type="text" id="module" class="form-control  @error('module') is-invalid @enderror" name="module[]" value="12">
+                                        <input type="text" id="module" class="form-control  @error('module') is-invalid @enderror" name="module[]" value="15">
                                         @error('module')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -95,7 +95,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="no_of_hours" class="control-label" >Credit Hours:</label>
-                                        <input type="text" id="no_of_hours" class="form-control @error('no_of_hours') is-invalid @enderror" name="no_of_hours[]" value="24">
+                                        <input type="text" id="no_of_hours" class="form-control @error('no_of_hours') is-invalid @enderror" name="no_of_hours[]" value="15">
                                         @error('no_of_hours')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
