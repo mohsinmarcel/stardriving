@@ -149,6 +149,17 @@ class RatesController extends Controller
         return view('rates.edit',\compact('rates'));
     }
 
+    public function showRates($year)
+    {
+        if(!Auth::user()->hasPermissionTo('rates-edit'))
+        {
+            return abort(401);
+        }
+        // $rates = Rate::findOrFail($id);
+        $rates = Rate::where('class_type_id',$year)->get();
+        return view('rates.show',\compact('rates'));
+    }
+
     public function ratesUpdateProcess(Request $request)
     {
         // dd($request->all());

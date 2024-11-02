@@ -24,27 +24,34 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Module</th>
-                            <th>Number of Hours</th>
-                            <th>Hourly Rate</th>
+                            <th>Theoretical Price</th>
+                            <th>Practical Price</th>
+                            <th>Total Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{-- @dd($rates->prices) --}}
                         @foreach ($rates as $key => $item)
-                            {{-- @dd($item->hourly_rate) --}}
+                        @php
+                            $price = App\Helpers\Helper::getPriceRates($item->class_type_id);
+                            // dd($price);
+                        @endphp
+                            {{-- @dd($item->class_type_id) --}}
                             @if(!empty($item->year))
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>{{$item->classType->name}}</td>
-                                <td>{{$item->module}}</td>
-                                <td>{{$item->no_of_hours}}</td>
-                                <td>{{$item->hourly_rate}}</td>
+                                <td>{{'$'.$price['theory']}}</td>
+                                <td>{{'$'.$price['practical']}}</td>
+                                <td>{{'$'.$price['total']}}</td>
                                 <td>
                                     @can('rates-edit')
                                         <a href="{{route('rates.edits',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-file-edit-alt"></i>
+                                        </a>
+                                        <a href="{{route('rates.show',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Show" class="btn btn-info p-1" style="font-size: 1.3rem">
+                                            <i class="uil uil-eye"></i>
                                         </a>
                                     @endcan
                                 </td>

@@ -61,8 +61,8 @@
             <td>{{ @$student->license_expiry_date }}</td>
             <td>{{ @$student->student_type }}</td>
             <td>{{ @$student->student_condition }}</td>
-            <td>{{ @$student->practical_credit_hours }}</td>
             <td>{{ @$student->theoretical_credit_hours }}</td>
+            <td>{{ @$student->practical_credit_hours }}</td>
             <td>{{ @$student->total_hours }}</td>
             <td>{{ @$student->practical_credit_hours_rates }}</td>
             <td>{{ @$student->theoretical_credit_hours_rates }}</td>
