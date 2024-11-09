@@ -59,25 +59,25 @@
                 @can('student-email')
                     <button type="button" class="btn btn-primary btn-sm mb-2" data-value="{{$students->id}}" id="sendEmailBtn">Email</button>
                 @endcan
-                <br> 
+                <br>
                 @can('report-contract')
                     <a href="{{route('reports.student-contract',$students->id)}}" target="_blank" class="btn btn-secondary btn-sm mb-2" style="font-size: 13px;"><i class="uil uil-file-download"></i> Contract</a>
                 @endcan
-                
+
                 @can('report-medical')
                     <a href="{{route('reports.student-medical',$students->id)}}" target="_blank" class="btn btn-secondary btn-sm mb-2" style="font-size: 13px;"><i class="uil uil-file-download"></i> Student Medical</a>
                 @endcan
-                
+
                 <br>
                 @can('report-phaseone-certificate')
                     <a href="{{route('reports.phase-one-certificate',$students->id)}}" target="_blank" class="btn btn-secondary btn-sm mb-2" style="font-size: 13px;"><i class="uil uil-file-download"></i> Phase 1 Certificate</a>
                 @endcan
-                
+
                 @can('report-final-certificate')
                 <a href="{{route('reports.final-certificate',$students->id)}}" target="_blank" class="btn btn-secondary btn-sm mb-2" style="font-size: 13px;"><i class="uil uil-file-download"></i> Final Certificate</a>
                 @endcan
-                
-                
+
+
                 <div class="text-left mt-3">
                     <p class="text-muted mb-2 font-15"><strong>Student ID :</strong> <span
                             class="ml-2">{{$students->student_id}}</span></p>
@@ -219,7 +219,7 @@
                     </div>
                     <div class="tab-pane" id="license_details">
                         <div class="row">
-                            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
@@ -237,7 +237,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
@@ -269,7 +269,7 @@
                                                 Hours:</strong><span class="ml-2 mt-1"> <br>
                                                     {{@$studentCourseDetails->theoretical_credit_hours}}
                                                 </span></p>
-                                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                                                 Hours:</strong><span class="ml-2 mt-1"> <br>
                                                     {{@$remaining_hours[0]->remaining_theoritical_hours}}
                                                 </span></p>
-                                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -417,36 +417,36 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="tab-pane" id="exams">
-                    
+
                     <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Knowledge Test
+                                        <p class="text-muted mb-2 font-15"><strong>Theoretical Exam
                                         Date:</strong><span
-                                                class="ml-2 mt-1"> <br>{{$students->knowledge_test_date ?? 'N/A'}}</span></p>
-                                    </div>
-                                </div>
-                            </div>    
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Knowledge Test Time:</strong><span
-                                                class="ml-2 mt-1"> <br>{{$students->knowledge_test_time == null ? 'N/A' : date('h:i A', strtotime($students->knowledge_test_time)) ?? 'N/A'}}</span></p>
+                                                class="ml-2 mt-1"> <br>{{$students->theroy_exam_date ?? 'N/A'}}</span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong> Knowledge Test Location:</strong><span
-                                                class="ml-2 mt-1"> <br>{{$students->knowledge_test_location ?? 'N/A'}}</span></p>
+                                        <p class="text-muted mb-2 font-15"><strong>Theoretical Exam Time:</strong><span
+                                                class="ml-2 mt-1"> <br>{{$students->theroy_test_time == null ? 'N/A' : date('h:i A', strtotime($students->theroy_test_time)) ?? 'N/A'}}</span></p>
                                     </div>
                                 </div>
                             </div>
-                        </div>    
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="text-left mt-3">
+                                        <p class="text-muted mb-2 font-15"><strong> Theoretical Test Location:</strong><span
+                                                class="ml-2 mt-1"> <br>{{$students->theroy_test_location ?? 'N/A'}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -454,7 +454,7 @@
                                         <p class="text-muted mb-2 font-15"><strong>Practical Exam
                                                 Date:</strong><span
                                                 class="ml-2 mt-1">
-                                                <br>{{$students->theroy_exam_date ?? 'N/A'}}</span></p>
+                                                <br>{{$students->knowledge_test_date ?? 'N/A'}}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -474,7 +474,7 @@
                                         <p class="text-muted mb-2 font-15"><strong>Practical Exam
                                                 Location:</strong><span
                                                 class="ml-2 mt-1">
-                                                <br>{{$students->theroy_test_location ?? 'N/A'}}</span></p>
+                                                <br>{{$students->knowledge_test_location ?? 'N/A'}}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +536,7 @@
                 </div>
             </div>
         @endcan
-        
+
         @can('payment-view')
             <div class="card">
                 <div class="card-body">
@@ -630,7 +630,7 @@
                 </div>
             </div>
         @endcan
-        
+
         @can('attendance-view')
             <div class="card">
                 <div class="card-body" style="overflow-y: auto">
@@ -648,7 +648,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Class Type</th>    
+                                    <th>Class Type</th>
                                     <th>Module</th>
                                     <th>Teacher</th>
                                     <th>Date</th>
@@ -685,7 +685,7 @@
                 </div>
             </div>
         @endcan
-        
+
         @can('student-exams-view')
             <div class="card">
                 <div class="card-body" style="overflow-x: auto">
@@ -723,7 +723,7 @@
                                         <td>{{$item->exam_date}}</td>
                                         <td class="text-right">
                                             <div class="btn-group float-right ml-2" role="group" aria-label="Basic example">
-                                               
+
                                                 @can('student-exams-create')
                                                     <a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="View" class="btn btn-info p-0 px-1 mb-2 showExamDetailBtn" style="font-size: 1.5rem">
                                                         <i class="uil uil-eye"></i>
@@ -749,7 +749,7 @@
                                                         <i class="uil uil-file-download"></i>
                                                     </a>
                                                 @endcan
-                                                
+
                                             </div>
                                             {{-- @endcan --}}
                                         </td>
@@ -799,7 +799,7 @@
                                                     <i class="uil uil-file-edit-alt"></i>
                                                 </button>
                                             @endcan
-        
+
                                             @can('session-evaluation-delete')
                                                 <button id="deleteButton" data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Delete" class="btn btn-danger p-1" style="font-size: 1.3rem">
                                                     <i class="uil uil-trash-alt"></i>
@@ -848,19 +848,19 @@
                                     <a href="{{asset('storage/'.$item->document)}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="View" class="btn btn-info p-1" style="font-size: 1.3rem">
                                         <i class="uil uil-eye"></i>
                                     </a>
-                                    
+
                                     @can('student-documents-edit')
                                         <button href="javascript:void(0);" data-value="{{$item->id}}" data-document-type="{{$item->documentType->name}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1 editStudentDocument" style="font-size: 1.3rem">
                                             <i class="uil uil-file-edit-alt"></i>
                                         </button>
                                     @endcan
-                                    
+
                                     @can('student-documents-delete')
                                         <button id="deleteStudentDocument" data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Delete" class="btn btn-danger p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-trash-alt"></i>
                                         </button>
                                     @endcan
-                                    
+
                                 </td>
                             </tr>
                             @endforeach
@@ -869,7 +869,7 @@
                 </div>
             </div>
         @endcan
-        
+
     </div>
 </div>
 @include('partials._modal')
@@ -990,7 +990,7 @@ $(document).ready(function(){
     if(success != ''){
         $.NotificationApp.send("Message!",success,"top-right","rgba(0,0,0,0.2)","success")
     }
-    
+
     $(document).on('click','.deleteExam',function(){
             let dataId = $(this).attr('data-value')
             let route = "{{route('student-exams.destroy',':id')}}"
@@ -1237,8 +1237,8 @@ $(document).ready(function(){
             $('#frontPagesModal .modal-content').html(data);
         });
     });
-    
-    
+
+
 
     // $('#closeModal').click(function (e) {
     //     $('#viewPaymentDetails').modal('hide');
@@ -1258,7 +1258,7 @@ $(document).ready(function(){
         e.preventDefault();
 
     });
-    
+
 
     $(document).on('submit','#studentExtraCharges',function(e){
       e.preventDefault();
@@ -1625,7 +1625,7 @@ $(document).ready(function(){
         }
         });
     });
-    
+
     $('.viewStudentNote').click(function (e) {
         let id = $(this).attr('data-value')
         $('#frontPagesModal').modal('show');

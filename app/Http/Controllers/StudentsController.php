@@ -58,7 +58,7 @@ class StudentsController extends Controller
         {
             return abort(401);
         }
-        
+
     }
 
     /**
@@ -158,12 +158,26 @@ class StudentsController extends Controller
                 'knowledge_test_time' =>$request->knowledge_test_time,
                 'knowledge_test_location' => $request->knowledge_test_location,
             ]);
-            $encodedData    = urlencode(URL::to('/')."/students/".$student->student_id);
-            $response       = Http::get('https://chart.googleapis.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl='.$encodedData);
-            $qrCodeBase64   = 'data:image/png;base64,' . base64_encode($response->body());
+            // $encodedData    = urlencode(URL::to('/')."/students/".$student->student_id);
+            // $response       = Http::get('https://chart.googleapis.com/chart?chs=300x300&cht=qr&choe=UTF-8&chl='.$encodedData);
+            // $qrCodeBase64   = 'data:image/png;base64,' . base64_encode($response->body());
 
-            $student->qr_code_image = $qrCodeBase64;
-             $student->save();
+            // $student->qr_code_image = $qrCodeBase64;
+            //  $student->save();
+            // $encodedData = urlencode(URL::to('/') . "/students/" . $student->student_id);
+            // $response = Http::get("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encodedData}");
+            // $qrCodeBase64 = 'data:image/png;base64,' . base64_encode($response->body());
+
+            // $student->qr_code_image = $qrCodeBase64;
+            // $student->save();
+
+            $encodedData = urlencode(URL::to('/') . "/students/" . $student->student_id);
+            $response = Http::withoutVerifying()->get("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encodedData}");
+                $qrCodeBase64 = 'data:image/png;base64,' . base64_encode($response->body());
+
+                $student->qr_code_image = $qrCodeBase64;
+                $student->save();
+
             $medicalConditions = MedicalCondition::where('active',1)->get();
             foreach ($medicalConditions as $key => $value) {
                 $a = 'medical_condition_'.$value->id;
@@ -197,7 +211,7 @@ class StudentsController extends Controller
                 'student_id' => $student->id
             ]);
             // $paymentMethodId = PaymentMethod::where('key',$request->payment_method)->first()->id;
-            
+
             // if($request->hasFile('cheque_image') && $request->payment_method == 'cheque')
             // {
             //     $file_name = $request->cheque_image->store('cheques');
@@ -241,7 +255,7 @@ class StudentsController extends Controller
             return abort(401);
         }
         // $students = Student::findOrFail($id);
-        $students = Student::where('student_id',$id)->first();
+        $students = Student::where('student_id',$id)->firstOrFail();
         $studentMedicalCondition = StudentMedicalCondition::where('student_id',$students->id)->get();
         $studentLicenses = StudentLicense::where('student_id',$students->id)->first();
         $studentCourseDetails = StudentCourseDetail::where('student_id',$students->id)->first();
@@ -290,8 +304,8 @@ class StudentsController extends Controller
         $studentContract = StudentContract::where('student_id',$students->id)->first();
         $studentDocuments = StudentDocument::where('student_id',$students->id)->first();
         $studentMedicalCondition = StudentMedicalCondition::where('student_id',$students->id)->get();
-        
-        $locations = Location::all();   
+
+        $locations = Location::all();
 
         return view('students.edit',compact('students','conditions','studentLicenses','studentCourseDetail','taxes','studentContract','studentDocuments','studentMedicalCondition','locations'));
     }
@@ -305,6 +319,7 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $theoryClassRate = Rate::where('class_type_id',1)->first();
         $practicalClassRate = Rate::where('class_type_id',2)->first();
         $taxes = session()->get('taxes');
@@ -343,6 +358,7 @@ class StudentsController extends Controller
             'other_document_2' => 'nullable|mimes:jpeg,jpg,png,pdf|max:2048',
             'refugee_document' => 'nullable|mimes:jpeg,jpg,png,pdf|max:2048'
         ]);
+
         $files = [];
         $student = Student::findOrFail($id);
         try{
@@ -363,7 +379,7 @@ class StudentsController extends Controller
                 'province' => $request->province,
                 'status_in_canada' => $request->status_in_canada,
                 'is_live_in_canada' => $request->status_in_canada == null?0:1,
-                'student_type' => $request->student_status,                
+                'student_type' => $request->student_status,
                 'theroy_exam_date' => $request->theroy_exam_date,
                 'theroy_test_location' => $request->theroy_test_location,
                 'theroy_test_time' => $request->theroy_test_time,
@@ -371,6 +387,15 @@ class StudentsController extends Controller
                 'knowledge_test_time' =>$request->knowledge_test_time,
                 'knowledge_test_location' => $request->knowledge_test_location,
             ]);
+
+            $encodedData = urlencode(URL::to('/') . "/students/" . $student->student_id);
+            $response = Http::withoutVerifying()->get("https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={$encodedData}");
+                $qrCodeBase64 = 'data:image/png;base64,' . base64_encode($response->body());
+
+                $student->qr_code_image = $qrCodeBase64;
+                $student->update();
+
+
             $studentLicense = StudentLicense::where('student_id',$id)->first();
             $studentLicense->update([
                 'certificate_number' => $request->certificate_number,
@@ -413,7 +438,7 @@ class StudentsController extends Controller
             throw $ex;
             // return abort(500);
         }
-        return redirect()->route('students.index')->with('success','Student updated successfully');
+        return redirect()->route('students.show', ['student' => $student->student_id])->with('success', 'Student updated successfully');
     }
 
     /**

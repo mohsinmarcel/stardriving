@@ -31,6 +31,8 @@ class Student extends Model
         'knowledge_test_date',
         'knowledge_test_time',
         'knowledge_test_location',
+        'theroy_test_time',
+        'theroy_test_location',
         'isextrastudent'
     ];
 
@@ -88,5 +90,5 @@ class Student extends Model
     }
 
 
-    
+
 }
