@@ -6,6 +6,7 @@ use App\Constants\DatabaseEnumConstants;
 use App\Models\ActivityLog;
 use App\Models\ChargesType;
 use App\Models\ClassModule;
+use App\Models\ClassType;
 use App\Models\DocumentType;
 use App\Models\EvaluationType;
 use Illuminate\Http\Request;
@@ -81,9 +82,9 @@ class StudentsController extends Controller
         $rates = ['theoretical_rate' => $rate[0]['hourly_rate'], 'practical_rate' => $rate[1]['hourly_rate']];
 
         $locations = Location::all();
-
-
-        return view('students.create',compact('conditions','payment_methods','taxes','rates', 'locations'));
+        $newRates = Rate::groupBy('class_type_id')->whereNotNull('year')->get();
+        // @dd($newRates);
+        return view('students.create',compact('conditions','payment_methods','taxes','rates', 'locations','newRates'));
     }
 
     /**
@@ -94,8 +95,11 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        $theoryClassRate = Rate::where('class_type_id',1)->first();
-        $practicalClassRate = Rate::where('class_type_id',2)->first();
+        // dd($request->all());
+        $classFetch = Rate::where('class_type_id',$request->class_type_selected)->get();
+        $theoryClassRate = $classFetch[0];
+        $practicalClassRate = $classFetch[1];
+        // dd($theoryClassRate , $practicalClassRate);
         $taxes = session()->get('taxes');
         $request->validate([
             'student_id' => 'required|unique:students,student_id,NULL,id,deleted_at,NULL',
@@ -304,7 +308,6 @@ class StudentsController extends Controller
         $studentContract = StudentContract::where('student_id',$students->id)->first();
         $studentDocuments = StudentDocument::where('student_id',$students->id)->first();
         $studentMedicalCondition = StudentMedicalCondition::where('student_id',$students->id)->get();
-
         $locations = Location::all();
 
         return view('students.edit',compact('students','conditions','studentLicenses','studentCourseDetail','taxes','studentContract','studentDocuments','studentMedicalCondition','locations'));

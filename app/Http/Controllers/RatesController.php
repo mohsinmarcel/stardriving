@@ -160,6 +160,12 @@ class RatesController extends Controller
         return view('rates.show',\compact('rates'));
     }
 
+    public function getRates($classTypeId)
+    {
+        $rates = Rate::where('class_type_id',$classTypeId)->get();
+        return response()->json(['status' => 'success' , 'rates' => $rates ],200);
+    }
+
     public function ratesUpdateProcess(Request $request)
     {
         // dd($request->all());

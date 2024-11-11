@@ -349,7 +349,7 @@
                             <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
                                         <label for="knowledge_test_time" class="control-label">Time:</label>
-                                        <input type="time"  id="knowledge_test_time" 
+                                        <input type="time"  id="knowledge_test_time"
                                             class="form-control @error('knowledge_test_time') is-invalid @enderror"
                                             name="knowledge_test_time" value="{{ old('knowledge_test_time') }}">
                                     @error('knowledge_test_time')
@@ -388,11 +388,11 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
                                         <label for="theroy_test_time" class="control-label">Time:</label>
-                                        <input type="time"  id="theroy_test_time" 
+                                        <input type="time"  id="theroy_test_time"
                                             class="form-control @error('theroy_test_time') is-invalid @enderror"
                                             name="theroy_test_time" value="{{ old('theroy_test_time') }}">
                                     @error('theroy_test_time')
@@ -416,7 +416,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>         
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -424,6 +424,23 @@
                     <div class="card-body">
                         <h5 class="header-title">Price</h5>
                         <hr>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="newRate" class="control-label">Select Price: <span class="text-muted">(Selecting Price Is Necessary For Calculations)</span></label>
+                                <select class="form-control form-select" name="price_name" onchange="getRateFromClass(this)">
+                                    <option value="price_name" selected> Select Price </option>
+                                    @if (!empty($newRates))
+                                        @foreach ($newRates as $new)
+                                            <option value="{{$new->class_type_id}}">{{$new->class_name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <input type="hidden" id="newTheoryRates" name="new_theory_rates" value="{{ old('new_theory_rates') }}">
+                            <input type="hidden" id="newPracticalRates" name="new_pratical_rates" value="{{ old('new_pratical_rates') }}">
+                            <input type="hidden" id="classTypeSelected" name="class_type_selected" value="{{ old('class_type_selected') }}">
+
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -431,6 +448,7 @@
                                     <input type="text" id="theoretical" class="form-control" value="Theoretical"
                                         readonly>
                                 </div>
+                                {{-- @dd(old('theoretical_class_hours')) --}}
                                 <div class="form-group">
                                     <label for="theoretical_class_hours" class="control-label">Theoretical Class
                                         Hours:*</label>
@@ -703,11 +721,13 @@
             let discountAmount = parseFloat(discount.value);
             let totalAmount = document.querySelector('#total_amount');
             let rates = @json($rates);
+            // console.log('yehrahay',rates.theoretical_rate)
             let taxes = @json($taxes);
             totalHours.value = theoreticalClassHours + practicalClassHours
-            let subtotalValue = (theoreticalClassHours * parseFloat(rates.theoretical_rate)) + (practicalClassHours *
-                parseFloat(rates.practical_rate))
-
+            let subtotalValue = (theoreticalClassHours * parseFloat($('#newTheoryRates').val())) + (practicalClassHours *
+                parseFloat($('#newPracticalRates').val()))
+                // let subtotalValue = (theoreticalClassHours * parseFloat(rates.theoretical_rate)) + (practicalClassHours *
+                // parseFloat(rates.practical_rate))
             subTotal.value = subtotalValue
             // let subTotalwithGstTax = subtotalValue + ((subtotalValue * parseFloat(taxes.gst_tax))/100)
             let subTotalwithGstAndQstTax = subtotalValue + ((subtotalValue * parseFloat(taxes.qst_tax)) / 100) + ((
@@ -774,5 +794,31 @@
 
             $(end_date).val(someFormattedDate);
         }
+
+        function getRateFromClass(newClass) {
+            let newClassValue = $(newClass).val();
+
+            $.ajax({
+                url: '/rates/get/' + newClassValue,
+                type: 'GET',
+                success: function(response) {
+                    $.each(response, function(index, item) {
+                        // console.log(response.rates[0].hourly_rate)
+                        let value1 = response.rates[0].hourly_rate;
+                        let value2 = response.rates[1].hourly_rate;
+                        // console.log(value1,value2)
+                        $('#newTheoryRates').val(value1);
+                        $('#newPracticalRates').val(value2);
+                        $('#classTypeSelected').val(newClassValue);
+                        return false;
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching data:", error);
+                }
+            });
+        }
+
+
     </script>
 @endpush
