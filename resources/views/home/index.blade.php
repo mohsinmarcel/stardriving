@@ -334,7 +334,7 @@
                                     <ul class="list-group list-group-flush" id="upcomingTheoryExamsList">
                                         @foreach ($upcomingTheoryExams as $exam)
                                             <li class="list-group-item">
-                                                {{ $exam->getFullNameAttribute() }} - {{ $exam->theroy_exam_date }}
+                                                {{ $exam->getFullNameAttribute() }} - {{ $exam->theroy_exam_date }} - {{ date('h:i A', strtotime($exam->theroy_test_time)) }} - {{ $exam->theroy_test_location }}
                                             </li>
                                         @endforeach
                                     </ul>
@@ -363,7 +363,7 @@
                                         @foreach ($upcomingKnowledgeTests as $test)
                                             <li class="list-group-item">
                                                 {{ $test->getFullNameAttribute() }} - {{ $test->knowledge_test_date }}
-                                                {{ date('h:i A', strtotime($test->knowledge_test_time)) }}
+                                                {{ date('h:i A', strtotime($test->knowledge_test_time)) }} - {{ $exam->knowledge_test_location }}
                                             </li>
                                         @endforeach
                                     </ul>

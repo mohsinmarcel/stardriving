@@ -41,12 +41,16 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    @php
+                    $counter = 1;
+                @endphp
                     <tbody class="theoreticalBody">
                         @foreach ($student_attendances as $key => $item)
                         @if($item->class_type->name == 'Theoretical')
                         {{-- @dd($item->file_path) --}}
+
                             <tr>
-                                <td>{{$key+1}}</td>
+                                <td>{{$counter ++}}</td>
                                 <td>{{@$item->class_type->name}}</td>
                                 <td>{{@$item->class_module->name}}</td>
                                 <td>{{@$item->teacher->full_name}}</td>

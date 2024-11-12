@@ -34,7 +34,7 @@ class StudentAttendancesController extends Controller
         {
             return abort(401);
         }
-        $student_attendances = StudentAttendance::with('class_type','class_module','teacher')->get();
+        $student_attendances = StudentAttendance::with('class_type','class_module','teacher')->orderBy('created_at','DESC')->get();
         $class_modules = ClassModule::where('active',1)->get()->toArray();
         return view('student-attendance.index',compact('student_attendances','class_modules'));
     }

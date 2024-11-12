@@ -665,7 +665,7 @@
                                         <td>{{@$item->teacher->full_name}}</td>
                                         <td>{{$item->attendance_date}}</td>
                                         <td>{{date('h:i A', strtotime($item->start_time))}} - {{date('h:i A', strtotime($item->end_time))}}</td>
-                                        {{-- <td>
+                                        <td>
                                             @can('attendance-edit')
                                                 <button data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Edit" class="btn btn-info p-1 editButton" style="font-size: 1.3rem">
                                                     <i class="uil uil-edit"></i>
@@ -676,7 +676,7 @@
                                                     <i class="uil uil-trash-alt"></i>
                                                 </button>
                                             @endcan
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -730,7 +730,7 @@
                                                     </a>
                                                 @endcan
                                                 @can('student-exams-edit')
-                                                    <button data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Delete" class="btn btn-info p-0 px-1 mb-2 EditExam" style="font-size: 1.3rem">
+                                                    <button data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Edit" class="btn btn-info p-0 px-1 mb-2 EditExam" style="font-size: 1.3rem">
                                                         <i class="uil uil-file-edit-alt"></i>
                                                     </button>
                                                 @endcan
