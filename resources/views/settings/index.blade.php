@@ -22,7 +22,7 @@
          <span class="d-none d-md-block">Tax</span>
          </a>
       </li>
-      {{-- 
+      {{--
       <li class="nav-item">
          <a href="#smtp" data-toggle="tab" aria-expanded="true" class="nav-link ">
          <i class="mdi mdi-account-circle d-md-none d-block"></i>
@@ -48,7 +48,7 @@
          <span class="d-none d-md-block">Password</span>
          </a>
       </li>
-      {{-- 
+      {{--
       <li class="nav-item">
          <a href="#datatbaseResetTab" data-toggle="tab" aria-expanded="true" class="nav-link ">
          <i class="mdi mdi-account-circle d-md-none d-block"></i>
@@ -102,7 +102,7 @@
             </div>
          </form>
       </div>
-      {{-- 
+      {{--
       <div class="tab-pane" id="smtp">
          <form action="{{route('settings.update')}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -240,7 +240,7 @@
             </div>
          </form>
       </div>
-      {{-- 
+      {{--
       <div class="tab-pane" id="datatbaseResetTab">
          <form action="{{route('settings.databaseReset')}}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -308,14 +308,15 @@
                <diV class="col-md-9">
                   <div class="form-group">
                      <label for="message">Message:</label>
-                     <input type="text" class="form-control" name="message" required>
+                     <textarea class="form-control py-5" name="message" required></textarea>
+                     {{-- <input type="text" class="form-control" name="message" required> --}}
                      @error('message')
                      <div class="invalid-feedback">{{ $message }}</div>
                      @enderror
                   </div>
                </div>
             </div>
-            
+
             <button type="submit" class="btn btn-primary waves-effect">Add Template</button>
          </form>
          <!-- Display Locations Table -->
@@ -431,11 +432,11 @@
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 <script>
    var success = '{{Session::get('success')}}'
-   // console.log(success);    
+   // console.log(success);
    if(success != ''){
        $.NotificationApp.send("Message!",success,"top-right","rgba(0,0,0,0.2)","success")
    }
-   
+
    $(document).ready(function () {
        $('#representativeSignature').submit(function(eventObj) {
            if($('#representativeSignatureCheckBox').prop('checked') && !signaturePad.isEmpty()) {
@@ -445,7 +446,7 @@
        });
        const urlParams = new URLSearchParams(window.location.search);
           const activeTab = urlParams.get('active_tab');
-   
+
             if (activeTab) {
                 $('.nav-tabs .nav-item').removeClass('active');
                 $(`a[href="#tax"]`).removeClass('active');
@@ -455,7 +456,7 @@
                 $(`a[href="#${activeTab}"]`).addClass('active');
             }
    });
-   
+
    $(document).on('change','#representativeSignatureCheckBox',function(){
            if($(this).prop('checked')) {
                $('#signatureDiv').show();
@@ -465,15 +466,15 @@
                $('#representative_signature_image_div').show();
            }
        })
-       
+
    var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
    backgroundColor: 'rgba(255, 255, 255, 0)',
    penColor: 'rgb(0, 0, 0)'
      });
-     $('#clear').click(function (e) { 
+     $('#clear').click(function (e) {
          e.preventDefault();
          signaturePad.clear();
-   
+
      });
 </script>
 @endpush

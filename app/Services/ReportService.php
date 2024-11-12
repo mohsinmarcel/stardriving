@@ -25,28 +25,28 @@ class ReportService implements ReportContract{
         $student = Student::join('student_course_details','student_course_details.student_id','students.id')
             ->join('student_contracts','student_contracts.student_id','students.id')
             ->join('student_licenses','student_licenses.student_id','students.id')
-            ->select('students.student_id','students.first_name','students.last_name','students.gender','students.dob','students.email','students.phone_number_1','students.phone_number_2','students.address','students.postal_code','students.city','students.province','student_licenses.license_number','student_licenses.certificate_number','student_course_details.theoretical_credit_hours','student_course_details.practical_credit_hours','student_course_details.total_hours','student_course_details.sub_total','student_course_details.gst_tax','student_course_details.qst_tax','student_contracts.beginning_of_contract','student_contracts.end_of_contract')->where('students.id',$id)->first();
+            ->select('students.student_id','students.first_name','students.last_name','students.gender','students.dob','students.email','students.phone_number_1','students.phone_number_2','students.address','students.postal_code','students.city','students.province','student_licenses.license_number','student_licenses.certificate_number','student_course_details.theoretical_credit_hours','student_course_details.practical_credit_hours','student_course_details.total_hours','student_course_details.sub_total','student_course_details.remaining_amount','student_course_details.discount','student_course_details.gst_tax','student_course_details.qst_tax','student_contracts.beginning_of_contract','student_contracts.end_of_contract')->where('students.id',$id)->first();
         $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
         if($student_signature_document != null){
             $student_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$student_signature_document->document));
         }else{
             $student_signature = null;
         }
-        
+
         $parent_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',6)->first();
         if($parent_signature_document != null){
             $parent_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$parent_signature_document->document));
         }else{
             $parent_signature = null;
         }
-        
+
         $setting_detail= SettingDetail::where('key','representative_signature_image')->first();
         if($setting_detail != null && $setting_detail->value != '' && $setting_detail->value != null){
             $representative_sign = base64_encode(file_get_contents(public_path().'/storage/'.$setting_detail->value));
         }else{
             $representative_sign = null;
         }
-        
+
         $data = [
             'image'=> $image,
             'student' => $student,
@@ -102,7 +102,7 @@ class ReportService implements ReportContract{
             'instructor_evaluation_strength' => $instructor_evaluation_strength,
             'instructor_evaluation_weaknesses' => $instructor_evaluation_weaknesses,
             'student' => $student,
-            'teacher' => $teacher, 
+            'teacher' => $teacher,
         ];
         $view_html = view('reports.session-evaluation', $data)->render();
         $mpdf = new Mpdf();
@@ -110,7 +110,7 @@ class ReportService implements ReportContract{
         return  $mpdf;
     }
     public function studentExam($examId){
-        
+
         $image = base64_encode(file_get_contents(public_path().'/assets/images/Logo-02.png'));
         $quebec_image = base64_encode(file_get_contents(public_path().'/assets/report-assets/images/quebec.png'));
         $student_exam = StudentExam::findOrFail($examId);
@@ -181,12 +181,12 @@ class ReportService implements ReportContract{
         join student_attendance_details sad on st.id = sad.student_attendance_id
         where sad.student_id = {$id}");
 
-        $teacher_signs = DB::select("select DISTINCT t.id teacher_id,t.signature_image teacher_signature_image 
+        $teacher_signs = DB::select("select DISTINCT t.id teacher_id,t.signature_image teacher_signature_image
         from student_attendances st
         join teachers t on t.id = st.teacher_id
         join student_attendance_details sad on st.id = sad.student_attendance_id
         where sad.student_id = {$id}");
-        
+
         $teacher_signs_traverse = [];
 
         for($i =0;$i<count($teacher_signs);$i++){
@@ -194,7 +194,7 @@ class ReportService implements ReportContract{
         }
         $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
         $student_signature =  ($student_signature_document != null) ? base64_encode(file_get_contents(storage_path().'/app/public/'.$student_signature_document->document)) : null;
-        
+
         $attendance_traverse = [];
         for($i =0;$i<count($student_attendance);$i++){
             $attendance_traverse[$student_attendance[$i]->class_modules] = $student_attendance[$i];
@@ -209,7 +209,7 @@ class ReportService implements ReportContract{
         } catch (\Exception $e) {
             $representative_sign = null;
         }
-        
+
         $data = [
             'image'=> $image,
             'student' => $student,
@@ -239,7 +239,7 @@ class ReportService implements ReportContract{
         for($i =0;$i<count($student_attendance);$i++){
             $attendance_traverse[$student_attendance[$i]->class_modules] = $student_attendance[$i];
         }
-        
+
         $setting_detail= SettingDetail::where('key','representative_signature_image')->first();
         if($setting_detail != null && $setting_detail->value != '' && $setting_detail->value != null){
             $representative_sign = base64_encode(file_get_contents(storage_path().'/app/public/'.$setting_detail->value));
@@ -270,10 +270,10 @@ class ReportService implements ReportContract{
         $mpdf = new Mpdf([
             'useActiveForms' => true
         ]);
-        
+
         $mpdf->WriteHTML($view_html);
         $mpdf->SetHTMLFooter('
-            <table width="100%" style="vertical-align: bottom; font-family: calibri; 
+            <table width="100%" style="vertical-align: bottom; font-family: calibri;
                 font-size: 8pt; color: #000000;margin-top:0px">
                 <tr>
                     <td style="text-align:center">
@@ -300,7 +300,7 @@ class ReportService implements ReportContract{
         for($i =0;$i<count($student_attendance);$i++){
             $attendance_traverse[$student_attendance[$i]->class_modules] = $student_attendance[$i];
         }
-        
+
         $setting_detail= SettingDetail::where('key','representative_signature_image')->first();
         $setting_representative_name = SettingDetail::where('key','representative_name')->first();
         $representative_name = $setting_representative_name != null?$setting_representative_name->value:null;

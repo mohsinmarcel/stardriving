@@ -4,11 +4,11 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  
+
   <div class="modal-body">
     <div class="alert bg-danger text-light pb-0" id="chargesTypeError" style="display: none">
     </div>
-    <form action="{{route('student-notes.store')}}" method="POST" id="studentNote"> 
+    <form action="{{route('student-notes.store')}}" method="POST" id="studentNote">
         @csrf
         <input type="hidden" name="student_id" value="{{$student->id}}">
         <div class="row">
@@ -17,7 +17,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="description" class="control-label" >Student Note:*</label>
-                            <textarea type="text" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{old('description')}}"></textarea>
+                            <textarea type="text" id="description" class="py-5 form-control @error('description') is-invalid @enderror" name="description" value="{{old('description')}}"></textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

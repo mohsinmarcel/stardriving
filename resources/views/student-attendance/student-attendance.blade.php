@@ -4,7 +4,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  
+
   <div class="modal-body">
     <div class="alert bg-danger text-light pb-0" id="attendanceCreateError" style="display: none">
     </div>
@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="class_type" class="control-label" >Class Type:*</label>
-                    <select id="class_type" class="form-control @error('class_type') is-invalid @enderror" name="class_type">
+                    <select id="class_type" class="form-control @error('class_type') is-invalid @enderror" name="class_type" onchange="selectCategory(this)">
                         <option value>-- Select Class Type --- </option>
                         @foreach ($class_types as $item)
                             <option value="{{$item->id}}" {{old('class_type') == $item->id?'selected':''}}>{{$item->name}}</option>
@@ -89,7 +89,21 @@
                     @enderror
                 </div>
             </div>
-            
+            <div class="col-md-12 categorySelect d-none">
+                <div class="form-group">
+                    <label for="teacher" class="control-label" >Select Category:*</label>
+                    <select id="category" class="form-control @error('category') is-invalid @enderror" name="category">
+                        <option value selected>-- Select category --- </option>
+                        <option value="present" style="background-color: #00FF00">Present</option>
+                        <option value="absent" style="background-color: #FF2400">Absent</option>
+                        <option value="late" style="background-color: yellow">Late</option>
+                    </select>
+                    @error('category')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
     </form>
   </div>
   <div class="modal-footer">
@@ -105,4 +119,17 @@
     <button id="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary" id="storeAttendanceBtn" form="attendanceForm">Add Attendance</button>
 </div>
-
+    <script>
+        function selectCategory(input)
+        {
+            let cate = $(input).val();
+            if(cate == 2)
+            {
+                $('.categorySelect').removeClass('d-none');
+            }
+            else
+            {
+                $('.categorySelect').addClass('d-none');
+            }
+        }
+    </script>

@@ -6,7 +6,7 @@ $(document).on('click','#deleteButton',function(){
     // window.location.reload();
 })
 
-$('#addStudentAttendance').click(function (e) { 
+$('#addStudentAttendance').click(function (e) {
     let dataId = $(this).attr('data-value')
     $('#frontPagesModal').modal('show');
     $('#frontPagesModal .modal-content').html(` <div id="modal-preloader" class="my-2">
@@ -19,7 +19,7 @@ $('#addStudentAttendance').click(function (e) {
         </div>
     </div>`);
     $.get( base_url+"/attendance/create/"+dataId, function( data ) {
-        $('#frontPagesModal .modal-dialog').addClass('modal-lg');
+        $('#frontPagesModal .modal-dialog').addClass('modal-sm');
         $('#frontPagesModal .modal-content').html(data);
         $('#student, #teacher,#class_type,#class_module').select2();
     });
@@ -35,7 +35,7 @@ contentType: false,
 cache: false,
 processData:false,
 dataType:'JSON',
-beforeSend : function(){   
+beforeSend : function(){
     $('#storeAttendanceBtn').prop('disabled',true);
     $('#modal-preloader').css('display','inline-block');
 },
@@ -57,7 +57,7 @@ success: function(data)
 complete:function(){
     $('#storeAttendanceBtn').prop('disabled',false);
     $('#modal-preloader').css('display','none');
-}   
+}
 });
 });
 
@@ -75,7 +75,7 @@ if (class_type == '1') {
 }
 let d = new Date("2022-01-01 " + start)
 d.setHours(d.getHours() + hours)
-let h = String(d.getHours()).padStart(2, '0') 
+let h = String(d.getHours()).padStart(2, '0')
 let m = String(d.getMinutes()).padStart(2, '0')
 console.log(h + ':' + m);
 $('#end_time').attr({'value': h + ':' + m})

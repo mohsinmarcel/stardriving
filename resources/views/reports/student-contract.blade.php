@@ -25,7 +25,7 @@
             <div class="certification-details" id="address" style="width: 200px;">
                 <div class="box-details" style="font-size: 11px;font-weight: 500;border-left: 2px solid;padding: 5px 10px;line-height: 1.5;color: #000;border-top: 2px solid;border-bottom: 2px solid;border-right: 2px solid;">
                     <span style="font-weight:bold;">No. T.P.S:</span> 813563905RT0001 <br />
-                    <span style="font-weight:bold;">G.S.T.No.</span> 
+                    <span style="font-weight:bold;">G.S.T.No.</span>
                 </div>
                 <div class="box-details" style="font-size: 11px;font-weight: 500;border-left: 2px solid;padding: 5px 10px;line-height: 1.5;color: #000;border-bottom: 2px solid;border-right: 2px solid;">
                     <span style="font-weight:bold;">No. T.V.Q:</span> 1219049435TQ0001 <br />
@@ -83,7 +83,7 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                 <td colspan="3" style="padding:5px;font-size: 12px">
                     <b style="font-weight: bold;text-decoration: underline">Courriel / E-mail</b> <br>
                     <span>{{$student->email}}</span>
-                    
+
                 </td>
             </tr>
         </table>
@@ -138,10 +138,10 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
         <div class="step-heading">
             <p style="font-size:9px;margin-bottom:0px">
                 Je	soussigné(e)	accepte	que	l’école	de	conduit	ci-haut	mentionnéeà transmettre mes coordonnées et mon adresse électronique à la Société aux fins de sondage ou lorsque je ne peut terminer ma formation, afin de me transmettre les documents requis;
-            
+
                 I, the undersigned, agree that the driving school mentioned above will send my contact details and email address to the Company for survey purposes or when I cannot complete my training, in order to send me the required documents;
                     OUI/YES			 NON/NO
-                    
+
         </div>
         <div class="step-heading">
             <h5 style="font-size: 13px;font-weight: bold;font-family:Arial, Helvetica, sans-serif !important">3)	DESCRIPTION	DES	FORMATIONS	/	COURSE DESCRIPTION</h5>
@@ -158,16 +158,16 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
             </p>
             <h6>C) <span style="text-decoration: underline">Information supplémentaire / Additional information</span></h6>
             <p>
-                L’élève	ne	peut	pas	faire	des	sorties pratiques s’il	ne	possède	pas	un	permis	d’apprenti	conducteur	valide	et/ou	n’a	pas	son	permis	d’apprenti	
-                conducteur sur	lui. Les	cours	théoriques	doivent	être	animés	par	un	formateur	certifié,	en	classe.	Ils	ne	peuvent pas être	aucuns	cas	remplacés par	un	apprentissage	
-                autonome	sur	ordinateur. L’école ne peut obliger l’élève à suivre d’autres cours que ceux prévus au PESR. Tout cours supplémentaire ou tout outil d’apprentissage supplémentaire qui serait offert par l’école doit être 
+                L’élève	ne	peut	pas	faire	des	sorties pratiques s’il	ne	possède	pas	un	permis	d’apprenti	conducteur	valide	et/ou	n’a	pas	son	permis	d’apprenti
+                conducteur sur	lui. Les	cours	théoriques	doivent	être	animés	par	un	formateur	certifié,	en	classe.	Ils	ne	peuvent pas être	aucuns	cas	remplacés par	un	apprentissage
+                autonome	sur	ordinateur. L’école ne peut obliger l’élève à suivre d’autres cours que ceux prévus au PESR. Tout cours supplémentaire ou tout outil d’apprentissage supplémentaire qui serait offert par l’école doit être
                 facultatif et ne peut remplacer les cours obligatoires du PESR;
             </p>
-                    
-                <p> 
-                
+
+                <p>
+
                 Students	are	not	allowed	to	do	a	practical	training	if	they	do	not	hold	a	valid	learner’s	and/or	do	not	have	it	on	hand.
-                Theoretical	modules	must	be	given	by	a	certified	teacher	in	a classroom.	These	modules	cannot	be	replaced	under	any	circumstances	by	computerbased	self	study.	
+                Theoretical	modules	must	be	given	by	a	certified	teacher	in	a classroom.	These	modules	cannot	be	replaced	under	any	circumstances	by	computerbased	self	study.
                 The school cannot force the student to take courses other than those provided for in the PESR. Any additional course or any additional learning tool that may be offered by the school must be optional and cannot replace the mandatory PESR courses;
             </p>
         </div>
@@ -175,98 +175,110 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
             <h5 style="font-size: 13px;font-weight: bold;font-family:Arial, Helvetica, sans-serif !important">4) COÛT DE LA FORMATION / TRAINING FEES</h5>
         </div>
         <div class="training-fee fee-first">
-            <h6 style="text-align: center;font-size: 11px;margin:0px; margin-bottom: 5px;margin-top: 5px">Type de formation / Type of training: <b style="font-weight: bold">Automobile / Automobile</b>  </h6>
+            <h6 style="text-align: center; font-size: 11px; margin: 5px 0;">
+                Type de formation / Type of training: <b>Automobile / Automobile</b>
+            </h6>
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 60%;font-size: 11px;padding-bottom: 10px">
+                        <td style="width: 60%; font-size: 11px; padding-bottom: 5px;">
                             Total d’heures de cours théoriques / Total number of hours of theoretical modules:
                         </td>
-                        <td style="text-align: left;height: 20px;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
+                        <td style="text-align: left;">
+                            <span style="border: 1px solid black; padding: 5px 10px; font-size: 11px;">
                                 {{$student->theoretical_credit_hours}}
-                            </span> &nbsp;&nbsp;&nbsp; heures/hours
-                            {{-- <span id="cstudenttheroticalclasscredithour" style="padding:20px; line-height: 20px; ">01</span>	heures/hours --}}
+                            </span> heures/hours
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 60%;font-size: 11px;padding-bottom: 10px">
+                        <td style="width: 60%; font-size: 11px; padding-bottom: 5px;">
                             Total d’heures de cours pratiques / Total number of hours of practical courses:
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
+                            <span style="border: 1px solid black; padding: 5px 10px; font-size: 11px;">
                                 {{$student->practical_credit_hours}}
-                            </span> &nbsp;&nbsp;&nbsp; heures/hours
+                            </span> heures/hours
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 60%;font-size: 11px;padding-bottom: 10px">
-                            Total d’heures / Total numbers of hours:
+                        <td style="width: 60%; font-size: 11px; padding-bottom: 5px;">
+                            Total d’heures / Total number of hours:
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
+                            <span style="border: 1px solid black; padding: 5px 10px; font-size: 11px;">
                                 {{$student->total_hours}}
-                            </span> &nbsp;&nbsp;&nbsp; heures/hours
+                            </span> heures/hours
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
         <div class="training-fee">
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 60%;padding: 5px 10px 5px 10px;line-height:20px">
-                            Prix total avant taxes / Total training cost before taxes
+                        <td style="width: 60%; font-size: 11px;">
+                            Prix total avant taxes / Total training cost before taxes:
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
-                                {{$student->sub_total}}
-                            </span>
+                            <span style="border: 1px solid black; font-size: 11px;">{{$student->sub_total}}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 60%;padding-left: 10px">
+                        <td style="width: 60%; font-size: 11px;">
                             T.P.S. / G.S.T. :
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
-                                @php
-                                    $gst = ($student->gst_tax/100)*$student->sub_total;
-                                @endphp
-                                {{round($gst,2)}}
+                            <span style="border: 1px solid black; font-size: 11px;">
+                                @php $gst = ($student->gst_tax / 100) * $student->sub_total; @endphp
+                                {{round($gst, 2)}}
                             </span>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 60%;padding-left: 10px">
+                        <td style="width: 60%; font-size: 11px;">
                             T.V.Q. / Q.S.T. :
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
-                                @php
-                                    $qst = ($student->qst_tax/100)*$student->sub_total;
-                                @endphp
-                                {{round($qst,2)}}
+                            <span style="border: 1px solid black; font-size: 11px;">
+                                @php $qst = ($student->qst_tax / 100) * $student->sub_total; @endphp
+                                {{round($qst, 2)}}
                             </span>
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 60%;padding: 5px 10px 5px 10px">
+                        <td style="width: 60%; font-size: 11px;">
                             Prix total après taxes / Total training cost after taxes:
                         </td>
                         <td style="text-align: left;">
-                            <span style="border:1px solid black;padding:20px;margin-right: 10px;font-size: 14px">
-                                @php
-                                    $total = $gst+$qst+$student->sub_total
-                                @endphp
-                                {{round($total,2)}}
+                            <span style="border: 1px solid black; font-size: 11px;">
+                                @php $total = $gst + $qst + $student->sub_total; @endphp
+                                {{round($total, 2)}}
                             </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%; font-size: 11px;">
+                            Discount:
+                        </td>
+                        <td style="text-align: left;">
+                            <span style="border: 1px solid black; font-size: 11px;">{{$student->discount}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%; font-size: 11px;">
+                            Remaining Amount:
+                        </td>
+                        <td style="text-align: left;">
+                            <span style="border: 1px solid black; font-size: 11px;">{{$student->remaining_amount}}</span>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+
         <pagebreak>
         <div class="step-heading">
             <h5 style="font-size: 13px;font-weight: bold;font-family:Arial, Helvetica, sans-serif !important">5) MODALITÉS DE PAIEMENT / PAYMENT TERMS	</h5>
@@ -277,47 +289,47 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                 L’école doit remettre à l’élève un original du contrat signé et que celui-ci doit être conservé par l’élève jusqu’à l’obtention de sa classe ou de son permis, selon le PESR suivi;
                 L’école doit conserver le dossier de l’élève conformément aux lois applicables et ne peut le détruire avant l’expiration d’une période de sept ans, suivant la fin du contrat de service avec l’élève
                 Si l’élève ne termine pas sa formation dans le cadre du délai et souhaite se faire rembourser pour les cours non suivis, il lui incombe de transmettre au préalable de l’école la formule de
-                résiliation qui se trouve au point 7 du contrat, et ce durant la période de validité du contrat. 
+                résiliation qui se trouve au point 7 du contrat, et ce durant la période de validité du contrat.
                 L’élève est aussi tenu de se conformer aux points indiqués sous la rubrique Mentions exigée par la Loi sur la protection du consommateur qui figure ci-après si, l’école n’est pas tenue de rembourser l’élève pour les cours non suivis.
                </p>
-                    
-                <p> 
-                
+
+                <p>
+
                 The contract is valid for <b style="font-weight: bold">18 months period</b>, starting on the date of the first course.
                 The school must give the student an original of the signed contract and this must be kept by the student until they obtain their class or their permit, depending on the PESR followed;.
                 The school must keep the student's file in accordance with applicable laws and cannot destroy it before the expiration of a period of seven years, following the end of the service contract with the student.
                 If the student does not complete his/her training within this period and wishes to be refunded for courses he/she did not take, it is his/her responsibility to send to the driving school the cancellation form that can be found at point
                 7 of this contract, during the validity period of the contract.
-                The student is also required to comply with the requirements specified in theClause required under the Consumer Protection Act below. 
+                The student is also required to comply with the requirements specified in theClause required under the Consumer Protection Act below.
                 If the driving school does not receive any cancellation form, and if no settlement is reached between the school and the student regarding the deferral of the contract termination
                 date, the school is not required to refund the student for the courses he/she did not take.
-                
-                   
+
+
             </p>
             <p>Début du contrat – date du 1er cours / Beginning of contract – date of first course: <strong><span id="cstudentbegcontract" style="font-weight: bold">{{date('d-m-Y',strtotime($student->beginning_of_contract))}}</span></strong></p>
             <p>Fin du contrat / End of contract: <strong> <span id="cstudentendcontract" style="font-weight: bold">{{date('d-m-Y',strtotime($student->end_of_contract))}}</span></strong></p>
             <p>
                 L’école ne peut exiger de la part d’un élève un nombre de versements inférieur à :six versements pour le PESR portant sur la conduite d’un véhicule de promenade (classe 5), étalés de la façon suivante :
-                Un premier versement ne pouvant pas dépasser 20 % du coût total du cours de conduite au début de la première phase. 
+                Un premier versement ne pouvant pas dépasser 20 % du coût total du cours de conduite au début de la première phase.
                 Cinq autres versements égaux pour le montant restant du cours de conduite étalés de la façon suivante :
                 un versement au début de chacune des phases 2, 3 et 4;un versement après que l’élève eut complété 50 % des apprentissages de la phase 3;un versement après que l’élève eut complété 50 % des apprentissages de la phase 4;
             </p>
             <p>
-                
-                The school cannot require from a student a number of payments less than: six payments for the PESR relating to driving a passenger vehicle (class 5), spread out as follows:   
+
+                The school cannot require from a student a number of payments less than: six payments for the PESR relating to driving a passenger vehicle (class 5), spread out as follows:
                 A first payment not exceeding 20% of the total cost of the driving course at the start of the first phase.
                 Five other equal payments for the remaining amount of the driving course spread out as follows:
                 one payment at the start of each of phases 2, 3 and 4; one payment after the student has completed 50% of the learning in phase 3; one payment after the student has completed 50% of the learning in phase 4;
-                
+
             </p>
             <p>
                 L’école doit remettre à l’élève un reçu pour chaque paiement effectué et que ceux-ci doivent être conservés par l’élève jusqu’à l’obtention de sa classe ou de son permis, selon le PESR suivi; L’information suivante doit s’y retrouver : date, nom de l’élève, service reçu et montant reçu. /
 
                 The school must give the student a receipt for each payment made and these must be kept by the student until obtaining their class or permit, depending on the PESR followed ; The following information must appear on the receipt: date, student name, service rendered, and
                 amount paid.
-              
+
             </p>
-                
+
             <p>
                 Si l’élève est en défaut de paiement au moment où cette somme est exigible, alors que le service a été rendu, l’école peut charger des intérêts au taux légal annuel de 5%. / If a student is in
                 default of payment when the amount is due, and after the service has been rendered, then school is allowed to charge interests at the statuary annual rate of 5%.
@@ -336,16 +348,16 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                 <p>
                     Le consommateur peut résilier le présent contrat à tout moment en envoyant le formulaire
                     ci-annexé ou un autre avis écrit à cet effet au commerçant.
-                    
-                    
+
+
                 </p>
-                    
+
                 <p>
                     En cas de différend avec l’école, l’élève peut adresser une plainte auprès de la Société;
-                    
+
                  </p>
-                    
-                <p>    
+
+                <p>
                     Le contrat est résilié, sans autre formalité, dès l'envoi de la forme ou de l'avis.
                     Si le consommateur résilie le présent contrat avant que le commerçant n’ait commencé à
                     exécuter son obligation principale, le consommateur n'a aucun frais ni pénalité à payer.
@@ -360,9 +372,9 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                     Dans les dix jours qui suivent la résiliation du contrat, le commerçant doit restituer au
                     consommateur l’attestation de cours l'argent qu'il lui doit.
                  </p>
-                    
-                <p>    
-                    L’école doit remettre à l’élève, sans frais, une attestation de cours consignant le résultat obtenu ou les étapes terminées, 
+
+                <p>
+                    L’école doit remettre à l’élève, sans frais, une attestation de cours consignant le résultat obtenu ou les étapes terminées,
                     et ce, que le contrat de l’élève soit échu ou non;
                 </p>
                 <p>
@@ -376,12 +388,12 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                     CLAUSE REQUIRED UNDER THE CONSUMER PROTECTION ACT <br />
                     (service contract involving sequential performance for instruction, training or assistance)
                 </p>
-                <p>    
+                <p>
                     The consumer may cancel this contract at any time by sending the form attached here or
                     another notice in writing for that purpose to the merchant
                  </p>
-                    
-                <p>     
+
+                <p>
                     In the event of a dispute with the school, the student can file a complaint with the Société;
                 </p>
                 <p>
@@ -405,8 +417,8 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                     Within ten days following termination of the contract, the merchant must return the price certificate
                     to the consumer the money owed to him.
                  </p>
-                <p>    
-                    The school must provide the student, free of charge, with a course certificate recording the result obtained or the stages completed, 
+                <p>
+                    The school must provide the student, free of charge, with a course certificate recording the result obtained or the stages completed,
                     whether the student's contract has expired or not;
                 </p>
                 <p>
@@ -424,13 +436,13 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
             <p>
                 Le prix total du cours de conduit (modules théoriques et sorties pratiques) de classe 5 a été fixé par le gouvernement du Québec. Pour plus d’information, consulter le site de
                 la SAAQ a <a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a>. / The full price for class 5 driving courses ( theoretical
-                modules and practical courses ) has been set by the Government of Québec. For more information, please consult the SAAQ’s website at: <a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a>. 
+                modules and practical courses ) has been set by the Government of Québec. For more information, please consult the SAAQ’s website at: <a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a>.
             </p>
             <p>
                 Un cours peut être annulé par l’élève avec un préavis de <b style="font-weight: bold">24 heures</b>. À défaut de respecter le préavis, le coût sera débité du compte de l’élève comme si le cours avait été suivi. /
                 A course can be cancelled by a student with a <b style="font-weight: bold">24 hours</b> notice. Failure to do so will result in the student being charged the full amount for the courses as if he-she had taken it.
                 <br>
-                L’école de conduit doit remettre à l’élève, sans frais, une attestation de cours dans laquelle figurant le résultat obtenu ou les étapes complétées. L’attestation de cours doit être remise à l’élève à la fin du cours ou dans les 10 jours suivant la résiliation du contrat; 
+                L’école de conduit doit remettre à l’élève, sans frais, une attestation de cours dans laquelle figurant le résultat obtenu ou les étapes complétées. L’attestation de cours doit être remise à l’élève à la fin du cours ou dans les 10 jours suivant la résiliation du contrat;
                 The driving school must provide the student, free of charge, with a course certificate showing the result obtained or the steps completed. The course certificate must be given to the student at the end of the course or within 10 days following termination of the contract;
             </p>
         </div>
@@ -451,16 +463,16 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
             </p>
             <p style="font-weight:bold">Rempli	et Signé	à /	Completed	and	Signed	in	:	Montréal, le	/	on <strong> <span id="cstudentcontractsigndate">{{date('d-m-Y',strtotime($student->beginning_of_contract))}}</span></strong></p>
             <p>
-                Les	droits conférés	par	le	présent contrat	de	cours	de	conduite	ne	sont	pas	susceptibles	de	cession	ou	de	transfert,	en	partie	ou	en	totalité	en	faveur	de	qui	que	ce	soit.	Sans	
-                restreindre la	généralité	de	ce	que	précède, les	droits	conférés	par	le	présent	contrat	ne	peuvent	être	cédés	ou	transférés	à	un	enseignant	qui	n’est	pas	un	salarié	de	l’École.	/	
-                The	rights	given	by	this	driving	course	contract	shall	not	be	assigned	or	transferred	to	anyone,	in	whole	or	in	part.	Without	limiting	the	generality	of	the	foregoing,	the	rights	
+                Les	droits conférés	par	le	présent contrat	de	cours	de	conduite	ne	sont	pas	susceptibles	de	cession	ou	de	transfert,	en	partie	ou	en	totalité	en	faveur	de	qui	que	ce	soit.	Sans
+                restreindre la	généralité	de	ce	que	précède, les	droits	conférés	par	le	présent	contrat	ne	peuvent	être	cédés	ou	transférés	à	un	enseignant	qui	n’est	pas	un	salarié	de	l’École.	/
+                The	rights	given	by	this	driving	course	contract	shall	not	be	assigned	or	transferred	to	anyone,	in	whole	or	in	part.	Without	limiting	the	generality	of	the	foregoing,	the	rights
                 given	by	this	contract	cannot	be	assigned	or	transferred	to	a	teacher	who	is	not	an	employee	of	the	School	under	contract.
             </p>
             <p>
-                En	cas	de	différend	avec	l’école,	l’élève	peut	addresser	une	plainte	a	la SAAQ	en	se	rendant	à	l’adresse	suivante :	<a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a> /	If	a	conflict	between	a	student	and	the	school	
+                En	cas	de	différend	avec	l’école,	l’élève	peut	addresser	une	plainte	a	la SAAQ	en	se	rendant	à	l’adresse	suivante :	<a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a> /	If	a	conflict	between	a	student	and	the	school
                 occurs	,	the	student	can	lodge	a	complaint	against	the	school	by	contacting	the SAAQ	at	<a href="https://saaq.gouv.qc.ca/" style="color: #1405ff!important;">https://saaq.gouv.qc.ca/</a>
             </p>
-            
+
         </div>
          <pagebreak>
         <div class="step2-content last-para box-text " style="font-size: 12px;border-bottom:1px solid #000;">
@@ -487,7 +499,7 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
             @if ($parent_signature != null)
                 <img id="image" src="{{'data:image/png;base64, '.$parent_signature}}" style="margin-left: 220px;margin-bottom: -20px " height="40" alt="logo">
             @endif
-            
+
             <p style="font-size: 11px;margin-bottom: 0px">Signature	du	Parent/	Parent’s	Signature :	_______________________</p>
             <p style="font-size: 6px;margin:0px;padding-left:210px">Signature	des	parents/parent’s	signature</p>
         </div>

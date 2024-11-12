@@ -64,7 +64,7 @@ class StudentAttendancesController extends Controller
             return abort(401);
         }
         $student = Student::findOrFail($id);
-        $class_types = ClassType::where('active',1)->get();
+        $class_types = ClassType::where('active',1)->whereIn('id',[1,2])->get();
 
         $teachers = Teacher::where('is_active',1)->get();
 
@@ -84,6 +84,7 @@ class StudentAttendancesController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(),[
             'class_type'=> "required",
             'attendance_date'=> "required|date",
@@ -102,7 +103,7 @@ class StudentAttendancesController extends Controller
         $course_complete_students = [];
         foreach ($student_hours as $key => $value) {
             if($request->class_type == 1){
-                
+
                 if($value->remaining_theoritical_hours < 2){
                     array_push($course_complete_students,$value->student_id);
                 }
@@ -147,7 +148,8 @@ class StudentAttendancesController extends Controller
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
                 'attendance_date' => $request->attendance_date,
-                'mark_by' => Auth::id()
+                'mark_by' => Auth::id(),
+                // 'event_id' => $request->category ?? null
             ]);
             foreach ($request->student as $value) {
                 $student_attendance->student_attendance_details()->save(
@@ -169,14 +171,17 @@ class StudentAttendancesController extends Controller
             try{
             $event =  $this->google_calendar_service->addNewEvent($name,$description,$start_date,$end_date);
             $student_attendance->event_id = $event;
-            }catch(Exception $e){}
+            }catch(Exception $e){
+                // dd($e);
+            }
             $student_attendance->save();
         }catch(Exception $e){
-             //throw $e;
+            //  throw $e;
+            // dd($e);
             return response()->json([
                 'status'=>false,
                 'error'=> ['student' => 'Something went wrong. Please try again.']
-            ]);
+            ],422);
         }
         return response()->json(['status'=>true,'success'=>"Student Attendance added successfully."]);
     }
@@ -233,13 +238,13 @@ class StudentAttendancesController extends Controller
             return response()->json(['status'=>false,'error'=>$validator->errors()->all()]);
         }
         $student_marked = $student_attendance->student_attendance_details->pluck('student_id')->toArray();
-        
+
         $attendanceExist = StudentAttendance::join('student_attendance_details','student_attendances.id','student_attendance_details.student_attendance_id')->join('students','students.id','student_attendance_details.student_id')->whereIn('student_attendance_details.student_id',$student_marked)
         ->where('class_type_id' , $request->class_type)
         ->where('class_module_id' , $request->class_module)
         ->where('student_attendances.id','<>',$student_attendance->id)
         ->select('students.student_id')->get();
-       
+
         if($attendanceExist->count() > 0){
             $students_roll_nos = implode(', ',$attendanceExist->pluck('student_id')->toArray());
             return response()->json(['status'=>false,'error'=>['student' => 'Student "'.$students_roll_nos.'" Attendance already marked.']]);
@@ -250,7 +255,7 @@ class StudentAttendancesController extends Controller
             $start_date = Carbon::parse($request->attendance_date.' '.$request->start_time);
             $end_date = Carbon::parse($request->attendance_date.' '.$request->end_time);
 
-            
+
 
             $student_attendance->class_type_id = $request->class_type;
             $student_attendance->class_module_id = $request->class_module;
@@ -259,8 +264,9 @@ class StudentAttendancesController extends Controller
             $student_attendance->end_time = $request->end_time;
             $student_attendance->attendance_date = $request->attendance_date;
             $student_attendance->mark_by = Auth::id();
+            $student_attendance->event_id = $request->category ?? null;
             $student_attendance->save();
-            StudentAttendanceDetail::where('student_attendance_id',$student_attendance->id)->delete(); 
+            StudentAttendanceDetail::where('student_attendance_id',$student_attendance->id)->delete();
             foreach ($request->student as $value) {
                 $student_attendance->student_attendance_details()->save(
                     new StudentAttendanceDetail([
@@ -274,7 +280,7 @@ class StudentAttendancesController extends Controller
             if($request->class_type == 1){
                 $name = "Theoretical Module: ".$class_module->name;
                 $description = "Teacher Name: ".$teacher->full_name;
-                
+
             }else if($request->class_type == 2){
                 $student = Student::find($request->student[0]);
                 $name = "Driving ".$class_module->name.' "'.$student->student_id.' / '.$student->full_name.'"';
@@ -317,7 +323,7 @@ class StudentAttendancesController extends Controller
         if($attendance->event_id!=null){
             $this->google_calendar_service->deleteEventById($attendance->event_id);
             }
-        StudentAttendanceDetail::where('student_attendance_id',$attendance->id)->delete(); 
+        StudentAttendanceDetail::where('student_attendance_id',$attendance->id)->delete();
         $attendance->delete();
         return redirect()->back()->with('success','Attendance deleted successfully');
     }
