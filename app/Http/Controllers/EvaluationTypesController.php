@@ -19,7 +19,7 @@ class EvaluationTypesController extends Controller
         if(!Auth::user()->hasPermissionTo('evaluation-type-view')){
             return abort(401);
         }
-        $evaluationType = EvaluationType::all();
+        $evaluationType = EvaluationType::orderBy('created_at','DESC')->get();
         return view('evaluation-types.index',compact('evaluationType'));
     }
 
@@ -46,7 +46,7 @@ class EvaluationTypesController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|max:200|unique:evaluation_types,name',
+            'name' => 'required|max:200',
             'type' => 'required'
         ]);
 

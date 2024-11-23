@@ -68,8 +68,8 @@ class Helper
         $data = [];
 
         if ($rate->count() >= 2) {
-            $data['theory'] = (int) $rate[0]->hourly_rate * 24;
-            $data['practical'] = (int) $rate[1]->hourly_rate * 15;
+            $data['theory'] = (int) $rate[0]->hourly_rate;
+            $data['practical'] = (int) $rate[1]->hourly_rate;
             $data['total'] = $data['theory']  + $data['practical'];
         }
 

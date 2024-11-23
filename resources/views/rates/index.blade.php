@@ -24,8 +24,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Theoretical Exam Rate</th>
-                            <th>Driving Exam Rate</th>
+                            <th>Theory Hourly Rate</th>
+                            <th>Driving Hourly Rate</th>
                             {{-- <th>Total Price</th> --}}
                             <th>Actions</th>
                         </tr>

@@ -426,38 +426,45 @@
                     <div class="card-body">
                         <h5 class="header-title">Price</h5>
                         <hr>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="newRate" class="control-label">Select Price: <span class="text-muted">(Selecting Price Is Necessary For Calculations)</span></label>
-                                <select class="form-control form-select" name="price_name" onchange="getRateFromClass(this)">
-                                    <option value="price_name" selected> Select Price </option>
-                                    @if (!empty($newRates))
-                                        @foreach ($newRates as $new)
-                                            <option value="{{$new->class_type_id}}">{{$new->class_name}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                            <input type="hidden" id="newTheoryRates" name="new_theory_rates" value="{{ old('new_theory_rates') }}">
-                            <input type="hidden" id="newPracticalRates" name="new_pratical_rates" value="{{ old('new_pratical_rates') }}">
-                            <input type="hidden" id="classTypeSelected" name="class_type_selected" value="{{ old('class_type_selected') }}">
-
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="theoretical" class="control-label">Theoretical Class:</label>
+                                    <label for="newRate" class="control-label">Select Price: <span class="text-muted">(Selecting Price Is Necessary For Calculations)</span></label>
+                                    <select class="form-control form-select" name="price_name" onchange="getRateFromClass(this)">
+                                        <option id="selectPrice" value="price_name" selected> Select Price </option>
+                                        @if (!empty($newRates))
+                                            @foreach ($newRates as $new)
+                                                <option value="{{$new->class_type_id}}">{{$new->class_name}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                {{-- <input type="hidden" id="newTheoryRates" name="new_theory_rates" value="{{ old('new_theory_rates') }}">
+                                <input type="hidden" id="newPracticalRates" name="new_pratical_rates" value="{{ old('new_pratical_rates') }}">
+                                <input type="hidden" id="classTypeSelected" name="class_type_selected" value="{{ old('class_type_selected') }}"> --}}
+                                <input type="hidden" id="newTheoryRates" name="new_theory_rates" value="0">
+                                <input type="hidden" id="newPracticalRates" name="new_pratical_rates" value="0">
+                                <input type="hidden" id="classTypeSelected" name="class_type_selected" value="0">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="theoretical" class="control-label">Theory Class:</label>
                                     <input type="text" id="theoretical" class="form-control" value="Theoretical"
                                         readonly>
                                 </div>
                                 {{-- @dd(old('theoretical_class_hours')) --}}
                                 <div class="form-group">
-                                    <label for="theoretical_class_hours" class="control-label">Theoretical Class
+                                    <label for="theoretical_class_hours" class="control-label">Theory Class
                                         Hours:*</label>
                                     <input type="number" id="theoretical_class_hours"
                                         class="form-control @error('theoretical_class_hours') is-invalid @enderror"
-                                        name="theoretical_class_hours" onkeyup="calculateRate()"
-                                        value="{{ old('theoretical_class_hours') }}">
+                                        name="theoretical_class_hours" value="24" onkeyup="calculateRate()"
+                                        {{-- value="{{ old('theoretical_class_hours') }}" --}}
+                                        >
                                     @error('theoretical_class_hours')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -472,8 +479,9 @@
                                         Hours:*</label>
                                     <input type="number" id="practical_class_hours"
                                         class="form-control @error('practical_class_hours') is-invalid @enderror"
-                                        name="practical_class_hours" onkeyup="calculateRate()"
-                                        value="{{ old('practical_class_hours') }}">
+                                        name="practical_class_hours" value="15" onkeyup="calculateRate()"
+                                        {{-- value="{{ old('practical_class_hours') }}" --}}
+                                        >
                                     @error('practical_class_hours')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -798,6 +806,7 @@
         }
 
         function getRateFromClass(newClass) {
+            $('#selectPrice').addClass('d-none');
             let newClassValue = $(newClass).val();
 
             $.ajax({
@@ -812,6 +821,7 @@
                         $('#newTheoryRates').val(value1);
                         $('#newPracticalRates').val(value2);
                         $('#classTypeSelected').val(newClassValue);
+                        calculateRate();
                         return false;
                     });
                 },
