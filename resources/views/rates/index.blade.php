@@ -15,18 +15,18 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title mb-4">List of Prices</h4>
+                <h4 class="header-title mb-4">List of Rates</h4>
                 <a href="{{route('rates.create')}}" class="btn btn-primary p-2">
-                   Create Price
+                   Create Rate
                 </a>
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Theoretical Price</th>
-                            <th>Practical Price</th>
-                            <th>Total Price</th>
+                            <th>Theoretical Exam Rate</th>
+                            <th>Driving Exam Rate</th>
+                            {{-- <th>Total Price</th> --}}
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -44,12 +44,12 @@
                                 <td>{{$item->classType->name}}</td>
                                 <td>{{'$'.$price['theory']}}</td>
                                 <td>{{'$'.$price['practical']}}</td>
-                                <td>{{'$'.$price['total']}}</td>
+                                {{-- <td>{{'$'.$price['total']}}</td> --}}
                                 <td>
                                     @can('rates-edit')
-                                        <a href="{{route('rates.edits',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
+                                        {{-- <a href="{{route('rates.edits',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Edit" class="btn btn-info p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-file-edit-alt"></i>
-                                        </a>
+                                        </a> --}}
                                         <a href="{{route('rates.show',$item->class_type_id)}}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Show" class="btn btn-info p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-eye"></i>
                                         </a>
@@ -72,9 +72,34 @@
 <script src="{{asset('assets/js/vendor/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('assets/js/vendor/responsive.bootstrap4.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
-            var a=$("#basic-datatable").DataTable({lengthChange:!1,language:{paginate:{previous:"<i class='mdi mdi-chevron-left'>",next:"<i class='mdi mdi-chevron-right'>"}},drawCallback:function(){$(".dataTables_paginate > .pagination").addClass("pagination-rounded")}});
-    })
+    $(document).ready(function() {
+        var originalOrder = [];
+        $("#basic-datatable tbody tr").each(function() {
+            originalOrder.push($(this).find('td:first').text());
+        });
+        var a = $("#basic-datatable").DataTable({
+            lengthChange: false,
+            language: {
+                paginate: {
+                    previous: "<i class='mdi mdi-chevron-left'>",
+                    next: "<i class='mdi mdi-chevron-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    orderable: false
+                }
+            ],
+            order: [],
+            rowCallback: function(row, data, dataIndex) {
+                $(row).find('td:first').text(originalOrder[dataIndex]);
+            }
+        });
+    });
 
     var success = '{{Session::get('success')}}'
     // console.log(success);

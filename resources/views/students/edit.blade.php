@@ -350,11 +350,11 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
-                                        <label for="knowledge_test_date" class="control-label">Theoretical Test
+                                        <label for="knowledge_test_date" class="control-label">Theoretical Exam
                                         Date:</label>
                                         <input type="date" id="knowledge_test_date" onchange="getdate(this,document.getElementById('knowledge_test_date'))"
                                             class="form-control @error('knowledge_test_date') is-invalid @enderror"
@@ -367,7 +367,7 @@
                             <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
                                         <label for="knowledge_test_time" class="control-label">Time:</label>
-                                        <input type="time"  id="knowledge_test_time" 
+                                        <input type="time"  id="knowledge_test_time"
                                             class="form-control @error('knowledge_test_time') is-invalid @enderror"
                                             name="knowledge_test_time" value="{{ old('knowledge_test_time',$students->knowledge_test_time) }}">
                                     @error('knowledge_test_time')
@@ -397,7 +397,7 @@
                         <div class="row">
                                     <div class="col-md-4 col-lg-3">
                                         <div class="form-group">
-                                            <label for="theroy_exam_date" class="control-label">Practical Exam
+                                            <label for="theroy_exam_date" class="control-label">Driving Exam
                                                 Date:</label>
                                             <input type="date" id="theroy_exam_date" onchange="getdate(this,document.getElementById('theroy_exam_date'))"
                                                 class="form-control @error('theroy_exam_date') is-invalid @enderror"
@@ -406,11 +406,11 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>  
+                                    </div>
                                     <div class="col-md-4 col-lg-3">
                                 <div class="form-group">
                                         <label for="theroy_test_time" class="control-label">Time:</label>
-                                        <input type="time"  id="theroy_test_time" 
+                                        <input type="time"  id="theroy_test_time"
                                             class="form-control @error('theroy_test_time') is-invalid @enderror"
                                             name="theroy_test_time" value="{{ old('theroy_test_time',$students->theroy_test_time) }}">
                                     @error('theroy_test_time')
@@ -434,7 +434,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>         
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -499,12 +499,12 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="practical" class="control-label">Practical Class:</label>
+                                    <label for="practical" class="control-label">Driving Class:</label>
                                     <input type="text" id="practical" class="form-control" value="Practical"
                                         readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="practical_class_hours" class="control-label">Practical Class
+                                    <label for="practical_class_hours" class="control-label">Driving Class
                                         Hours:</label>
                                     <input type="number" id="practical_class_hours"
                                         class="form-control @error('practical_class_hours') is-invalid @enderror"

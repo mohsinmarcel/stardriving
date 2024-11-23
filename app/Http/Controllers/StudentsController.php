@@ -266,7 +266,7 @@ class StudentsController extends Controller
         $studentContract = StudentContract::where('student_id',$students->id)->first();
         $studentPayment = StudentPayment::where('student_id',$students->id)->get();
         $studentDocuments = StudentDocument::where('student_id',$students->id)->get();
-        $driverLicenseImage = StudentDocument::where('document_type_id',1)->where('student_id',$students->id)->first();
+        $driverLicenseImage = StudentDocument::where('document_type_id',10)->where('student_id',$students->id)->first();
         $documentType = DocumentType::all();
         $chargesTypes = ChargesType::all();
         $studentExtraCharges = StudentExtraCharges::where('student_id',$students->id)->get();

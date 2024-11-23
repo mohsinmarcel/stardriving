@@ -33,7 +33,7 @@
                 margin: 50px auto;
             }
                   body.authentication-bg {
-                     height: auto;   
+                     height: auto;
                   }
             }
         </style>
@@ -52,13 +52,13 @@
                             </div>
 
                             <div class="card-body p-4">
-                                
+
                                 <div class="text-center w-75 m-auto">
                                     <h4 class="text-dark-50 text-center mt-0 font-weight-bold">Sign In</h4>
                                     @error('email')
                                     <p class="text-danger my-2">{{$message}}</p>
                                     @enderror
-                                    
+
                                 </div>
                                 @if(Session::has('Success'))
                                     <p class="alert alert-success">{{ Session::get('Success') }}</p>
@@ -91,12 +91,12 @@
                                             <a href="{{route('login.forgetPassword')}}" >Forget Password?</a>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-3" style="display: flow-root;">
+                                    {{-- <div class="form-group mb-3" style="display: flow-root;">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkbox-signin" name="remember" checked>
                                             <label class="custom-control-label" for="checkbox-signin">Remember me</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group mb-0 text-center">
                                         <button class="btn" style="background-color: #f14242 !important;color:white" type="submit"> Log In </button>
@@ -123,12 +123,12 @@
         <!-- end page -->
 
         <footer class="footer footer-alt">
-            
+
         </footer>
 
         <!-- bundle -->
         <script src="assets/js/vendor.min.js"></script>
         <script src="assets/js/app.min.js"></script>
-        
+
     </body>
 </html>

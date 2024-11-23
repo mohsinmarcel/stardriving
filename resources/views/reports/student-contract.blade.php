@@ -249,17 +249,6 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                     </tr>
                     <tr>
                         <td style="width: 60%; font-size: 11px;">
-                            Prix total après taxes / Total training cost after taxes:
-                        </td>
-                        <td style="text-align: left;">
-                            <span style="border: 1px solid black; font-size: 11px;">
-                                @php $total = $gst + $qst + $student->sub_total; @endphp
-                                {{round($total, 2)}}
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 60%; font-size: 11px;">
                             Discount:
                         </td>
                         <td style="text-align: left;">
@@ -268,12 +257,26 @@ Formation	Théorique	et	Pratique	:	Tarif Unitaire	Unique / Theoretical	and	Pract
                     </tr>
                     <tr>
                         <td style="width: 60%; font-size: 11px;">
+                            Prix total après taxes / Total training cost after taxes:
+                        </td>
+                        <td style="text-align: left;">
+                            <span style="border: 1px solid black; font-size: 11px;">
+                                @php $total = $gst + $qst + $student->sub_total;
+                                    $fullTotal = $total - $student->discount;
+                                @endphp
+                                {{round($fullTotal, 2)}}
+                            </span>
+                        </td>
+                    </tr>
+
+                    {{-- <tr>
+                        <td style="width: 60%; font-size: 11px;">
                             Remaining Amount:
                         </td>
                         <td style="text-align: left;">
                             <span style="border: 1px solid black; font-size: 11px;">{{$student->remaining_amount}}</span>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>

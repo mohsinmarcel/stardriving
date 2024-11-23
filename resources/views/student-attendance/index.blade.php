@@ -138,9 +138,34 @@
         // $('#class_module').
         // console.log(modules);
     }
-     $(document).ready(function(){
-            var a=$("#basic-datatable").DataTable({lengthChange:!1,language:{paginate:{previous:"<i class='mdi mdi-chevron-left'>",next:"<i class='mdi mdi-chevron-right'>"}},drawCallback:function(){$(".dataTables_paginate > .pagination").addClass("pagination-rounded")}});
-    })
+    $(document).ready(function() {
+        var originalOrder = [];
+        $("#basic-datatable tbody tr").each(function() {
+            originalOrder.push($(this).find('td:first').text());
+        });
+        var a = $("#basic-datatable").DataTable({
+            lengthChange: false,
+            language: {
+                paginate: {
+                    previous: "<i class='mdi mdi-chevron-left'>",
+                    next: "<i class='mdi mdi-chevron-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    orderable: false
+                }
+            ],
+            order: [],
+            rowCallback: function(row, data, dataIndex) {
+                $(row).find('td:first').text(originalOrder[dataIndex]);
+            }
+        });
+    });
 
 
     var success = '{{Session::get('success')}}'

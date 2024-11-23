@@ -68,6 +68,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/database-backup', [BackupController::class, 'deleteFile'])->name('database-backup.delete');
     Route::get('/database-backup/daily', [BackupController::class, 'daily'])->name('database-backup.daily');
 
+    Route::get('/export-database', [BackupController::class, 'exportDatabase'])->name('export.database');
+
+
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::get('/api/upcoming-exams', [HomeController::class, 'getUpcomingExams']);

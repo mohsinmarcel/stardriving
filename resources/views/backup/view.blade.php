@@ -10,15 +10,18 @@
             <div class="col-md-10">
                 <h4 class="page-title">Backup Files</h4>
             </div>
-            <div class="col-md-2" style="padding: 20px;">
-                <a href="{{route('database-backup.daily')}}" class="btn btn-info">Create Backup</a>
-            </div>
-        </div>
+                   </div>
     </div>
 </div>
 <div class="row">
+
     <div class="col-12">
+
         <div class="card">
+            <div class="col-md-12" style="padding: 20px; float:right;">
+                <a href="{{route('export.database')}}" class="btn btn-primary" style="float:right;">Create Backup</a>
+                {{-- <a href="{{route('database-backup.daily')}}" class="btn btn-info">Create Backup</a> --}}
+            </div>
             <div class="card-body">
                 <h4 class="header-title mb-4">List of Backup Files</h4>
                 <table id="basic-datatable" class="table dt-responsive nowrap w-100">
@@ -45,7 +48,7 @@
                                         <i class="uil uil-trash-alt"></i>
                                     </button>
                                 @endcan
-                                
+
                             </td>
                         </tr>
                         @endforeach
@@ -88,10 +91,10 @@
                     }
                 }, error:function(jhxr,status,err){
                     console.log(jhxr);
-                }  
+                }
             });
         }
-      
+
     });
 </script>
 @endpush

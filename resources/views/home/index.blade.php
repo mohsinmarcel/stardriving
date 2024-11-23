@@ -346,7 +346,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between">
-                                        <h5>Upcoming Knowledge Tests</h5>
+                                        <h5>Upcoming Driving Exams</h5>
                                         <div class="form-group">
                                             <label for="knowledgeTestRecords">Show Last:</label>
                                             <select id="knowledgeTestRecords" class="form-control"

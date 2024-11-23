@@ -218,10 +218,15 @@ class ReportService implements ReportContract{
             'student_attendance' => $attendance_traverse,
             'representative_sign' => $representative_sign
         ];
+        // $view_html = view('reports.student-attendance', $data)->render();
+        // $mpdf = new Mpdf();
+        // $mpdf->WriteHTML($view_html);
+        // return  $mpdf;
         $view_html = view('reports.student-attendance', $data)->render();
-        $mpdf = new Mpdf();
+        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']); // 'L' for landscape orientation
         $mpdf->WriteHTML($view_html);
-        return  $mpdf;
+        return $mpdf;
+
     }
     public function phaseOneCertificate($id)
     {
@@ -247,7 +252,7 @@ class ReportService implements ReportContract{
             $representative_sign = null;
         }
 
-        $bar_code_document= StudentDocument::where('student_id',$id)->where('document_type_id',2)->first();
+        $bar_code_document= StudentDocument::where('student_id',$id)->where('document_type_id',13)->first();
         if($bar_code_document != null){
             $bar_code_ext = pathinfo($bar_code_document->document, PATHINFO_EXTENSION);
             $bar_code_image = base64_encode(file_get_contents(storage_path().'/app/public/'.$bar_code_document->document));
@@ -310,7 +315,7 @@ class ReportService implements ReportContract{
             $representative_sign = null;
         }
 
-        $bar_code_document= StudentDocument::where('student_id',$id)->where('document_type_id',2)->first();
+        $bar_code_document= StudentDocument::where('student_id',$id)->where('document_type_id',13)->first();
         if($bar_code_document != null){
             $bar_code_ext = pathinfo($bar_code_document->document, PATHINFO_EXTENSION);
             $bar_code_image = base64_encode(file_get_contents(storage_path().'/app/public/'.$bar_code_document->document));

@@ -34,7 +34,8 @@
                     $ext = pathinfo(@$driverLicenseImage->document, PATHINFO_EXTENSION);
                 // dd($ext)
                 @endphp
-                @if (@$driverLicenseImage->document_type_id == 1)
+                {{-- @dd(@$students) --}}
+                @if (@$driverLicenseImage->document_type_id == 10)
                     @if ($ext == 'pdf')
                         <a href="{{asset('storage/'.$driverLicenseImage->document)}}" target="_blank" alt="" style="font-size: 20px">Open Driver License</a>
                     @else
@@ -43,13 +44,13 @@
                     @endif
                 @else
 
-                @if (@$students->gender == 'male')
-                    <img src="{{asset('assets/images/male_student.png')}}" class="rounded-circle avatar-lg img-thumbnail"
-                    style="height:150px; width:150px" alt="profile-image">
-                @else
-                    <img src="{{asset('assets/images/female_student.png')}}" class="rounded-circle avatar-lg img-thumbnail"
-                    style="height:150px; width:150px" alt="profile-image">
-                @endif
+                    @if (@$students->gender == 'male')
+                        <img src="{{asset('assets/images/male_student.png')}}" class="rounded-circle avatar-lg img-thumbnail"
+                        style="height:150px; width:150px" alt="profile-image">
+                    @else
+                        <img src="{{asset('assets/images/female_student.png')}}" class="rounded-circle avatar-lg img-thumbnail"
+                        style="height:150px; width:150px" alt="profile-image">
+                    @endif
                 @endif
                 <h4 class="mb-0 mt-2">{{$students->full_name}}</h4>
                 <p class="text-muted font-14">{{ucwords($students->student_type)}}</p>
@@ -276,7 +277,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Practical Class Hours:</strong><span
+                                        <p class="text-muted mb-2 font-15"><strong>Driving Class Hours:</strong><span
                                                 class="ml-2 mt-1"> <br>
                                                 {{@$studentCourseDetails->practical_credit_hours}}
                                                 </span></p>
@@ -306,7 +307,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Remaining Practical Hours:</strong><span
+                                        <p class="text-muted mb-2 font-15"><strong>Remaining Driving Hours:</strong><span
                                                 class="ml-2 mt-1"> <br>
                                                 {{@$remaining_hours[0]->remaining_driving_hours}}
                                                 </span></p>
@@ -451,7 +452,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Practical Exam
+                                        <p class="text-muted mb-2 font-15"><strong>Driving Exam
                                                 Date:</strong><span
                                                 class="ml-2 mt-1">
                                                 <br>{{$students->knowledge_test_date ?? 'N/A'}}</span></p>
@@ -461,7 +462,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Practical Exam
+                                        <p class="text-muted mb-2 font-15"><strong>Driving Exam
                                                 Time:</strong><span
                                                 class="ml-2 mt-1">
                                                 <br>{{$students->knowledge_test_time == null ? 'N/A' : date('h:i A', strtotime($students->knowledge_test_time)) ?? 'N/A'}}</span></p>
@@ -471,7 +472,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-15"><strong>Practical Exam
+                                        <p class="text-muted mb-2 font-15"><strong>Driving Exam
                                                 Location:</strong><span
                                                 class="ml-2 mt-1">
                                                 <br>{{$students->knowledge_test_location ?? 'N/A'}}</span></p>

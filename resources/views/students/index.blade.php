@@ -59,13 +59,13 @@
                                             <i class="uil uil-file-edit-alt"></i>
                                         </a>
                                     @endcan
-                                    
+
                                     @can('student-delete')
                                         <button id="deleteButton" data-toggle="tooltip" data-placement="bottom" title="" data-value="{{$item->id}}" data-original-title="Delete" class="btn btn-danger p-1" style="font-size: 1.3rem">
                                             <i class="uil uil-trash-alt"></i>
                                         </button>
                                     @endcan
-                                    
+
                                 </td>
                             </tr>
                         @endforeach
@@ -90,10 +90,37 @@
 <script src="{{asset('assets/js/vendor/dataTables.keyTable.min.js')}}"></script>
 <script src="{{asset('assets/js/vendor/dataTables.select.min.js')}}"></script>
 <script>
-    $(document).ready(function(){
-        var a=$("#basic-datatable").DataTable({lengthChange:!1,language:{paginate:{previous:"<i class='mdi mdi-chevron-left'>",next:"<i class='mdi mdi-chevron-right'>"}},drawCallback:function(){$(".dataTables_paginate > .pagination").addClass("pagination-rounded")}});
-    })
-
+    // $(document).ready(function(){
+    //     var a=$("#basic-datatable").DataTable({lengthChange:!1,language:{paginate:{previous:"<i class='mdi mdi-chevron-left'>",next:"<i class='mdi mdi-chevron-right'>"}},drawCallback:function(){$(".dataTables_paginate > .pagination").addClass("pagination-rounded")}});
+    // })
+    $(document).ready(function() {
+        var originalOrder = [];
+        $("#basic-datatable tbody tr").each(function() {
+            originalOrder.push($(this).find('td:first').text());
+        });
+        var a = $("#basic-datatable").DataTable({
+            lengthChange: false,
+            language: {
+                paginate: {
+                    previous: "<i class='mdi mdi-chevron-left'>",
+                    next: "<i class='mdi mdi-chevron-right'>"
+                }
+            },
+            drawCallback: function() {
+                $(".dataTables_paginate > .pagination").addClass("pagination-rounded");
+            },
+            columnDefs: [
+                {
+                    targets: 0,
+                    orderable: false
+                }
+            ],
+            order: [],
+            rowCallback: function(row, data, dataIndex) {
+                $(row).find('td:first').text(originalOrder[dataIndex]);
+            }
+        });
+    });
 
     @can('student-delete')
         $(document).on('click','#deleteButton',function(){
@@ -104,7 +131,7 @@
             $('#delete-alert-modal').modal('show')
         })
     @endcan
-    
+
     var success = '{{Session::get('success')}}'
     var error = '{{Session::get('error')}}'
     // console.log(success);
