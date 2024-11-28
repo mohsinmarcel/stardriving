@@ -26,14 +26,14 @@ class ReportService implements ReportContract{
             ->join('student_contracts','student_contracts.student_id','students.id')
             ->join('student_licenses','student_licenses.student_id','students.id')
             ->select('students.student_id','students.first_name','students.last_name','students.gender','students.dob','students.email','students.phone_number_1','students.phone_number_2','students.address','students.postal_code','students.city','students.province','student_licenses.license_number','student_licenses.certificate_number','student_course_details.theoretical_credit_hours','student_course_details.practical_credit_hours','student_course_details.total_hours','student_course_details.sub_total','student_course_details.remaining_amount','student_course_details.discount','student_course_details.gst_tax','student_course_details.qst_tax','student_contracts.beginning_of_contract','student_contracts.end_of_contract')->where('students.id',$id)->first();
-        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
+        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',14)->first();
         if($student_signature_document != null){
             $student_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$student_signature_document->document));
         }else{
             $student_signature = null;
         }
 
-        $parent_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',6)->first();
+        $parent_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',15)->first();
         if($parent_signature_document != null){
             $parent_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$parent_signature_document->document));
         }else{
@@ -83,11 +83,14 @@ class ReportService implements ReportContract{
             "evaluation_by" => DatabaseEnumConstants::EVALUATION_BY_TEACHER
         ])->get();
         $image = base64_encode(file_get_contents(public_path().'/assets/images/Logo-02.png'));
-        //$student_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$student_evaluation->student_signature));
-        $student_signature = "";
+        // $student_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$student_evaluation->student_signature));
+        // $student_signature = "";
+        $student_signature_document = StudentDocument::where('student_id',$student_evaluation->student_id)->where('document_type_id',14)->first();
+        $student_signature =  ($student_signature_document != null) ? base64_encode(file_get_contents(storage_path().'/app/public/'.$student_signature_document->document)) : null;
+
         $student = Student::find($student_evaluation->student_id);
         $teacher = Teacher::find($student_evaluation->teacher_id);
-        if(false){ //$teacher!=null
+        if($teacher!=null){ //$teacher!=null
             $teacher_signature =  base64_encode(file_get_contents(public_path().'/storage/'.$teacher->signature_image));
         }else{
             $teacher_signature = null;
@@ -192,7 +195,7 @@ class ReportService implements ReportContract{
         for($i =0;$i<count($teacher_signs);$i++){
             $teacher_signs_traverse[$teacher_signs[$i]->teacher_id] = base64_encode(file_get_contents(storage_path().'/app/public/'.$teacher_signs[$i]->teacher_signature_image));
         }
-        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
+        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',14)->first();
         $student_signature =  ($student_signature_document != null) ? base64_encode(file_get_contents(storage_path().'/app/public/'.$student_signature_document->document)) : null;
 
         $attendance_traverse = [];
@@ -260,7 +263,7 @@ class ReportService implements ReportContract{
             $bar_code_image = null;
             $bar_code_ext = null;
         }
-        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
+        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',14)->first();
         $student_signature =  ($student_signature_document != null) ? base64_encode(file_get_contents(storage_path().'/app/public/'.$student_signature_document->document)) : null;
         $data = [
             'image'=> $image,
@@ -324,7 +327,7 @@ class ReportService implements ReportContract{
             $bar_code_ext = null;
         }
 
-        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',5)->first();
+        $student_signature_document = StudentDocument::where('student_id',$id)->where('document_type_id',14)->first();
         $student_signature =  ($student_signature_document != null) ? base64_encode(file_get_contents(storage_path().'/app/public/'.$student_signature_document->document)) : null;
         $data = [
             'image'=> $image,

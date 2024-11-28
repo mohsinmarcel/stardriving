@@ -4,11 +4,11 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  
+
   <div class="modal-body">
     <div class="alert bg-danger text-light pb-0" id="studentDocumentError" style="display: none">
     </div>
-    <form action="{{route('student.extra.charges.store',$student->id)}}" method="POST" id="studentDocumentForm"> 
+    <form action="{{route('student.extra.charges.store',$student->id)}}" method="POST" id="studentDocumentForm">
         @csrf
         <input type="hidden" name="student_id" value="{{$student->id}}">
         <div class="row">

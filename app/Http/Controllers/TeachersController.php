@@ -46,7 +46,7 @@ class TeachersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -138,7 +138,7 @@ class TeachersController extends Controller
             $teacher->license_number = $request->license_number;
             $teacher->email = $request->email;
             // $teacher = $request->signature_image;
-        
+
         if($request->hasFile('signature_image') || $request->has('signature')){
             if($request->has('signature_status')){
                 $file_name = 'signatures/'. uniqid().''.uniqid().'.png';

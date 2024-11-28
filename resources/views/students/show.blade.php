@@ -942,7 +942,8 @@ $(document).ready(function(){
 
                 });
             let document_type_id = $(this).val();
-            if(document_type_id == 5 || document_type_id == 6){
+            console.log(document_type_id)
+            if(document_type_id == 14 || document_type_id == 15){
                 $('#radioCheck').show();
             }
             else {
